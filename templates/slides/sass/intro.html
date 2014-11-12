@@ -1,0 +1,477 @@
+<section>
+	<section>
+		<h1>OK. Preprocessors.</h1>
+
+		What do they offer?
+	</section>
+	<section>
+		<h2>Nesting</h2>
+						<pre><code data-trim contenteditable>
+							.page {
+							width: 100%;
+							.widget {
+							width: 50%;
+							.button {
+							width: 200px;
+							}
+							}
+							}
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.page {
+							width: 100%; }
+							.page .widget {
+							width: 50%; }
+							.page .widget .button {
+							width: 200px; }
+
+						</code></pre>
+	</section>
+	<section>
+		<h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
+						<pre><code data-trim contenteditable>
+							a {
+							color: gray;
+							&:hover {
+							color: black;
+							}
+							}
+
+							.block {
+							width: 100px;
+							.ie-6 & {
+							width: 102px;
+							}
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							a {
+							color: gray; }
+							a:hover {
+							color: black; }
+
+							.block {
+							width: 100px; }
+							.ie-6 .block {
+							width: 102px; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Nested Media Queries</h2>
+						<pre><code data-trim contenteditable>
+							.screencolor{
+							@media screen {
+							color: green;
+							@media (min-width:768px) {
+							color: red;
+							}
+							}
+							@media tv {
+							color: black;
+							}
+							}						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							@media screen {
+							.screencolor {
+							color: green;
+							}
+							}
+							@media screen and (min-width: 768px) {
+							.screencolor {
+							color: red;
+							}
+							}
+							@media tv {
+							.screencolor {
+							color: black;
+							}
+							}						</code></pre>
+	</section>
+	<section>
+		<h2>Variables</h2>
+						<pre><code data-trim contenteditable>
+							$width: 200px;
+
+							.widget1 {
+							width: $width;
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.widget1 {
+							width: 200px;  }
+						</code></pre>
+	</section>
+	<section>
+		<h2><em>!default</em>
+			flag</h2>
+						<pre><code data-trim contenteditable>
+							$height: auto !default;
+
+							.widget1 {
+							height: $height;
+							}
+
+							.widget2 {
+							$height: 100px;
+							height: $height;
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.widget1 {
+							height: auto;  }
+							.widget2 {
+							height: 100px; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Mixins</h2>
+		<p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
+						<pre><code data-trim contenteditable>
+							@mixin color {
+							color: blue;
+							}
+
+							.aMixed {
+							@include color;
+							width: 200px;
+							}
+
+							.anotherMixed {
+							@include color;
+							width: 100px;
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.aMixed {
+							color: blue;
+							width: 200px; }
+							.anotherMixed {
+							color: blue;
+							width: 100px; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Mixin Arguments
+		</h2>
+						<pre><code data-trim contenteditable>
+							@mixin color($color) {
+							color: $color;
+							}
+
+							.aMixed {
+							@include color(blue);
+							}
+
+							.anotherMixed {
+							@include color(red);
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.aMixed {
+							color: blue; }
+							.anotherMixed {
+							color: red; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Mixin Argument Defaults
+		</h2>
+						<pre><code data-trim contenteditable>
+							@mixin foo($width) {
+							width: $width;
+							}
+							@mixin bar($color: blue) {
+							color: $color;
+							}
+
+							.aMixed {
+							@include foo;
+							@include bar;
+							}
+							.anotherMixed {
+							@include foo(200px);
+							@include bar(red);
+							}
+
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.aMixed {
+							color: blue; }
+							.anotherMixed {
+							width: 200px;
+							color: red; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Mixin Keyword Arguments</h2>
+						<pre><code data-trim contenteditable>
+							@mixin foo($width: 100px, $height: 100px, $color: blue) {
+							width: $width;
+							height: $height;
+							color: $color;
+							}
+
+							.foo {
+							@include foo($color: red);
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.foo {
+							width: 100px;
+							height: 100px;
+							color: red;
+							}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Passing Nested Content to Mixin</h2>
+						<pre><code data-trim contenteditable>
+							@mixin apply-to-ie6-only {
+							* html {
+							@content;
+							}
+							}
+							@include apply-to-ie6-only {
+							#logo {
+							background-image: url(/logo.gif);
+							}
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							* html #logo {
+							background-image: url(/logo.gif);
+							}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Functions</h2>
+						<pre><code data-trim contenteditable>
+							@function double($number) {
+							@return $number * 2;
+							}
+
+							.foo {
+							width: double(100px);
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.foo {
+							width: 200px; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Number Operations</h2>
+						<pre><code data-trim contenteditable>
+							p {
+							width: 1in + 8pt;
+							}
+
+							p {
+							font: 10px/8px;
+							width: $width/2;
+							height: (500px/2);
+							margin-left: 5px + 8px/2px;
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							p {
+							width: 1.111in; }
+							p {
+							font: 10px/8px;
+							width: 500px;
+							height: 250px;
+							margin-left: 9px; }
+
+						</code></pre>
+		<br>
+		<p>Number Relational Operators: <strong>&lt;   &lt;=   &gt;=   &gt;</strong></p>
+		<p>Relational Operators for all types: <strong>==   !=</strong></p>
+	</section>
+	<section>
+		<h2>Color Operations</h2>
+						<pre><code data-trim contenteditable>
+							color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							color: #050709;
+						</code></pre>
+		<hr>
+						<pre><code data-trim contenteditable>
+							color: #010203 * 2
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							color: #020406;
+						</code></pre>
+		<hr>
+						<pre><code data-trim contenteditable>
+							color: rgba(255, 255, 0, 0.75);
+						</code></pre>
+		<hr>
+						<pre><code data-trim contenteditable>
+							$translucent-red: rgba(255, 0, 0, 0.5);
+
+							color: opacify($translucent-red, 0.3);
+							background-color: transparentize($translucent-red, 0.25);
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							color: rgba(255, 0, 0, 0.9);
+							background-color: rgba(255, 0, 0, 0.25);
+						</code></pre>
+		<hr>
+						<pre><code data-trim contenteditable>
+							color: rgba(#f00, 0.8);
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							color: rgba(255,0,0,0.8);
+						</code></pre>
+		<hr>
+						<pre><code data-trim contenteditable>
+							ie-hex-str(green)
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							#FF00FF00
+						</code></pre>
+	</section>
+	<section>
+		<h2>Interpolation</h2>
+						<pre><code data-trim contenteditable>
+							$text-size: 13px;
+							$line-height: 1.3;
+							$selector: "body";
+
+							#{$selector} {
+							font: #{$text-size}/#{$line-height};
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							body {
+							font: 13px/1.3; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>Partials, @import, @include</h2>
+		<p>_text.scss</p>
+						<pre><code data-trim contenteditable>
+							p {
+							font-size: 1em;
+							}
+							h1 {
+							font-size: 2em;
+							}
+
+							@mixin foo {
+							font-family: Helvetica;
+							}
+						</code></pre>
+		<p>common.scss</p>
+						<pre><code data-trim contenteditable>
+							@import "text";
+
+							body {
+							@include foo;
+							}
+						</code></pre>
+		<hr>
+		<p>common.css</p>
+						<pre><code data-trim contenteditable>
+							p {
+							font-size: 1em; }
+							h1 {
+							font-size: 2em; }
+							body {
+							font-family: Helvetica; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>@extend</h2>
+						<pre><code data-trim contenteditable>
+							.error {
+							border: 1px #f00;
+							}
+							.seriousError {
+							@extend .error;
+							border-width: 3px;
+							}
+							.criticalError {
+							@extend .seriousError;
+							background: #fdd;
+							}
+
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.error, .seriousError, .criticalError {
+							border: 1px #f00; }
+
+							.seriousError, .criticalError {
+							border-width: 3px; }
+
+							.criticalError {
+							background: #fdd; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>@if, @else if, @else</h2>
+						<pre><code data-trim contenteditable>
+							$fancy = 0;
+
+							.foo {
+							@if $fancy == 1 {
+							border-style: solid;
+							}
+							@else if $fancy == 2 {
+							border-style: dotted;
+							}
+							@else if $fancy == 3 {
+							border-style: double;
+							}
+							@else {
+							border-style: none;
+							}
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.foo {
+							border-style: #none; }
+						</code></pre>
+	</section>
+	<section>
+		<h2>@each</h2>
+						<pre><code data-trim contenteditable>
+							$buttons: 'facebook' 'twitter' 'linkedin' 'github';
+
+							@each $button in $buttons {
+							.button-#{$button} {
+							background:
+							url("icons/#{$button}.png");
+							}
+							}
+						</code></pre>
+		<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							.button-facebook {
+							background: url(icons/facebook.png); }
+							.button-twitter {
+							background: url(icons/twitter.png); }
+							.button-linkedin {
+							background: url(icons/linkedin.png); }
+							.button-github {
+							background: url(icons/github.png); }
+						</code></pre>
+	</section>
+</section>
