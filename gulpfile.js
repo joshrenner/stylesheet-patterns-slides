@@ -10,4 +10,9 @@ gulp.task('template', function() {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task("default", ["template"]);
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+	gulp.watch('./templates/**/*.html', ['template']);
+});
+
+gulp.task("default", ["watch", "template"]);
