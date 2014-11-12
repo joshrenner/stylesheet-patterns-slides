@@ -41,8 +41,8 @@
 
 
 
-
 			<section>
+				<section>
 	<h1>Stylesheet Patterns</h1>
 	<p>Stylesheet Design Patterns for Better CSS</p>
 	<p>
@@ -54,6 +54,257 @@
 		<a href="http://lab.hakim.se/reveal-js">Made with Reveal.js</a>
 	</p>
 </section>
+
+				<section>
+	<p>If you are starting a green-field app, you can choose patterns that will effect your efficiency down the road. If you are taking on a brown-field refactor, you will need to introduce patterns that reduce friction.</p>
+</section>
+			</section>
+
+			<section>
+	<section data-markdown>
+		<script type="text/template">
+			#Efficient Selectors
+
+			Some guidelines to keep in mind when crafting your selectors
+		</script>
+	</section>
+	<section>
+		<p>CSS gets evaluated from right to left.</p>
+
+		<p>The evaluation of any more than a single element to determine styling is inefficient.</p>
+
+		<p>The four rules Google Page Speed recommendations consider inefficient:</p>
+		<ul>
+			<li>Rules with descendant selectors.
+				<br>E.g. <code>#content h3</code></li>
+			<li>Rules with child or adjacent selectors.
+				<br>E.g. <code>#content &gt; h3</code></li>
+			<li>Rules with overly qualified selectors.
+				<br>E.g. <code>div#content &gt; h3</code></li>
+			<li>Rules that apply :hover to non-link elements.
+				<br>E.g. <code>div#content:hover</code></li>
+		</ul>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			The guidelines I try to embrace:
+
+
+			- Use child selectors. E.g. <code>.module &gt; h3</code>
+			- Avoid tag selectors for common elements. E.g. <code>.module div</code>
+			- Use class names as the right-most selector.
+			- Avoid qualifying class names. E.g. <code>div.module</code>
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+			##Specificity Wars
+
+			Watch out for these:
+
+			- Rules with ids.
+			- Rules with elements.
+			- Rules with !important.
+		</script>
+	</section>
+</section>
+
+			<section>
+	<h1>Media Queries</h1>
+</section>
+
+			<section>
+	<section data-markdown>
+		<script type="text/template">
+			#Anti-Patterns
+		</script>
+	</section>
+	<section>
+		<h2>Parent Down Modifactions</h2>
+		<br>
+						<pre><code data-trim contenteditable>
+							.widget {
+							color: red;
+							border: 1px solid black;
+							width: 50%;
+							}
+
+							#sidebar .widget {
+							width: 100%;
+							}
+							body.homepage .widget {
+							border: none;
+							}
+						</code></pre>
+		<p>Software entities should be open for extension, but closed for modification.
+	</section>
+	<section>
+		<h2>Overly Complicated Selectors</h2>
+						<pre><code data-trim contenteditable>
+							#main-nav ul li ul li div {}
+							#sidebar > div > h3 {}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Overly Generic, Unscoped Class Names</h2>
+						<pre><code data-trim contenteditable>
+							.title {}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Overly Aggressive Resets</h2>
+						<pre><code data-trim contenteditable>
+							hr {
+							border: 1px solid #000;
+							}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Increasing Specificity</h2>
+						<pre><code data-trim contenteditable>
+							.title {
+							color: #000;
+							}
+
+							...
+
+							.main .title {
+							color: #222;
+							}
+
+							...
+
+							.main > div .title {
+							color: #000;
+							}
+						</code></pre>
+						<pre><code data-trim contenteditable>
+							#callout .title {
+							color: #922;
+							}
+
+							...
+
+							#callout.muted .title {
+							color: #644;
+							}
+
+							...
+
+							.main .title {
+							color: #000 !important;
+							}
+						</code></pre>
+	</section>
+</section>
+
+			<section>
+	<section data-markdown>
+		<script type="text/template">
+			#Patterns
+		</script>
+	</section>
+	<section>
+		<h2>Single Responsibility Principle</h2>
+		<p><em>A class for every purpose</em></p>
+		<br>
+						<pre><code data-trim contenteditable>
+							<div class="block promoted user clearfix header">
+								<h4 class="headline promoted name">Blake Blakerson</h4>
+								<p class="description text promoted">Abdid blaisden floyancy</p>
+							</div>
+						</code></pre>
+		<br>
+		<p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
+	</section>
+	<section>
+		<h2>Module Scoping</h2>
+						<pre><code data-trim contenteditable>
+							.widget {
+							//elements
+							.title {}
+							.body {}
+							> button {}
+
+							//states
+							&.collapsed {}
+
+							//other variations
+							.ie-8 & {}
+							}
+						</code></pre>
+	</section>
+	<section>
+		<h2>BEM</h2>
+		<h3>Block Element Modifier</h3>
+		<small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
+		<br>
+		<p>The naming convention follows this pattern:</p>
+						<pre><code data-trim contenteditable>
+							.block {}
+							.block__element {}
+							.block--modifier {}
+						</code></pre>
+		<p><code>.block</code> represents the higher level of an abstraction or component.</p>
+		<p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
+		<p><code>.block--modifier</code> represents a different state or version of .block.</p>
+		<br>
+		<p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen delimited, for example:</p>
+						<pre><code data-trim contenteditable>
+							.site-search {} /* Block */
+							.site-search__field {} /* Element */
+							.site-search--full {} /* Modifier */
+						</code></pre>
+	</section>
+	<section>
+		<h2>Separation of Structure From Skin</h2>
+		<br>
+						<pre><code data-trim contenteditable>
+							.button {
+							width: 200px;
+							height: 50px;
+							}
+
+							.box {
+							width: 400px;
+							overflow: hidden;
+							}
+
+							.widget {
+							width: 500px;
+							min-height: 200px;
+							overflow: auto;
+							}
+
+							.skin {
+							border: solid 1px #ccc;
+							background: linear-gradient(#ccc, #222);
+							box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
+							}
+						</code></pre>
+	</section>
+	<section>
+		<h2>Separation of Containers and Content</h2>
+						<pre><code data-trim contenteditable>
+							// not this
+							.widget h3 {
+							font-size: 14px;
+							color: #333;
+							margin-top: 10px;
+							}
+
+							// better reuse
+							.widget {
+							padding-top: 10px;
+							}
+							h3 {
+							font-size: 14px;
+							color: #333;
+							}
+						</code></pre>
+	</section>
+</section>
+
 
 			<section>
 	<section>
@@ -602,247 +853,6 @@
 			}
 		</code></pre>
 	</script>
-</section>
-
-			<section>
-	<section data-markdown>
-		<script type="text/template">
-			#Efficient Selectors
-
-			Some guidelines to keep in mind when crafting your selectors
-		</script>
-	</section>
-	<section>
-		<p>CSS gets evaluated from right to left.</p>
-
-		<p>The evaluation of any more than a single element to determine styling is inefficient.</p>
-
-		<p>The four rules Google Page Speed recommendations consider inefficient:</p>
-		<ul>
-			<li>Rules with descendant selectors.
-				<br>E.g. <code>#content h3</code></li>
-			<li>Rules with child or adjacent selectors.
-				<br>E.g. <code>#content &gt; h3</code></li>
-			<li>Rules with overly qualified selectors.
-				<br>E.g. <code>div#content &gt; h3</code></li>
-			<li>Rules that apply :hover to non-link elements.
-				<br>E.g. <code>div#content:hover</code></li>
-		</ul>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			The guidelines I try to embrace:
-
-
-			- Use child selectors. E.g. <code>.module &gt; h3</code>
-			- Avoid tag selectors for common elements. E.g. <code>.module div</code>
-			- Use class names as the right-most selector.
-			- Avoid qualifying class names. E.g. <code>div.module</code>
-		</script>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			##Specificity Wars
-
-			Watch out for these:
-
-			- Rules with ids.
-			- Rules with elements.
-			- Rules with !important.
-		</script>
-	</section>
-</section>
-
-			<section>
-	<section data-markdown>
-		<script type="text/template">
-			#Anti-Patterns
-		</script>
-	</section>
-	<section>
-		<h2>Parent Down Modifactions</h2>
-		<br>
-						<pre><code data-trim contenteditable>
-							.widget {
-							color: red;
-							border: 1px solid black;
-							width: 50%;
-							}
-
-							#sidebar .widget {
-							width: 100%;
-							}
-							body.homepage .widget {
-							border: none;
-							}
-						</code></pre>
-		<p>Software entities should be open for extension, but closed for modification.
-	</section>
-	<section>
-		<h2>Overly Complicated Selectors</h2>
-						<pre><code data-trim contenteditable>
-							#main-nav ul li ul li div {}
-							#sidebar > div > h3 {}
-						</code></pre>
-	</section>
-	<section>
-		<h2>Overly Generic, Unscoped Class Names</h2>
-						<pre><code data-trim contenteditable>
-							.title {}
-						</code></pre>
-	</section>
-	<section>
-		<h2>Overly Aggressive Resets</h2>
-						<pre><code data-trim contenteditable>
-							hr {
-							border: 1px solid #000;
-							}
-						</code></pre>
-	</section>
-	<section>
-		<h2>Increasing Specificity</h2>
-						<pre><code data-trim contenteditable>
-							.title {
-							color: #000;
-							}
-
-							...
-
-							.main .title {
-							color: #222;
-							}
-
-							...
-
-							.main > div .title {
-							color: #000;
-							}
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							#callout .title {
-							color: #922;
-							}
-
-							...
-
-							#callout.muted .title {
-							color: #644;
-							}
-
-							...
-
-							.main .title {
-							color: #000 !important;
-							}
-						</code></pre>
-	</section>
-</section>
-
-			<section>
-	<section data-markdown>
-		<script type="text/template">
-			#Patterns
-		</script>
-	</section>
-	<section>
-		<h2>Single Responsibility Principle</h2>
-		<p><em>A class for every purpose</em></p>
-		<br>
-						<pre><code data-trim contenteditable>
-							<div class="block promoted user clearfix header">
-								<h4 class="headline promoted name">Blake Blakerson</h4>
-								<p class="description text promoted">Abdid blaisden floyancy</p>
-							</div>
-						</code></pre>
-		<br>
-		<p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
-	</section>
-	<section>
-		<h2>Module Scoping</h2>
-						<pre><code data-trim contenteditable>
-							.widget {
-							//elements
-							.title {}
-							.body {}
-							> button {}
-
-							//states
-							&.collapsed {}
-
-							//other variations
-							.ie-8 & {}
-							}
-						</code></pre>
-	</section>
-	<section>
-		<h2>BEM</h2>
-		<h3>Block Element Modifier</h3>
-		<small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
-		<br>
-		<p>The naming convention follows this pattern:</p>
-						<pre><code data-trim contenteditable>
-							.block {}
-							.block__element {}
-							.block--modifier {}
-						</code></pre>
-		<p><code>.block</code> represents the higher level of an abstraction or component.</p>
-		<p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
-		<p><code>.block--modifier</code> represents a different state or version of .block.</p>
-		<br>
-		<p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen delimited, for example:</p>
-						<pre><code data-trim contenteditable>
-							.site-search {} /* Block */
-							.site-search__field {} /* Element */
-							.site-search--full {} /* Modifier */
-						</code></pre>
-	</section>
-	<section>
-		<h2>Separation of Structure From Skin</h2>
-		<br>
-						<pre><code data-trim contenteditable>
-							.button {
-							width: 200px;
-							height: 50px;
-							}
-
-							.box {
-							width: 400px;
-							overflow: hidden;
-							}
-
-							.widget {
-							width: 500px;
-							min-height: 200px;
-							overflow: auto;
-							}
-
-							.skin {
-							border: solid 1px #ccc;
-							background: linear-gradient(#ccc, #222);
-							box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
-							}
-						</code></pre>
-	</section>
-	<section>
-		<h2>Separation of Containers and Content</h2>
-						<pre><code data-trim contenteditable>
-							// not this
-							.widget h3 {
-							font-size: 14px;
-							color: #333;
-							margin-top: 10px;
-							}
-
-							// better reuse
-							.widget {
-							padding-top: 10px;
-							}
-							h3 {
-							font-size: 14px;
-							color: #333;
-							}
-						</code></pre>
-	</section>
 </section>
 
 
