@@ -1,0 +1,23 @@
+{
+  "name": "stylesheet-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/press22day/stylesheet-patterns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/press22day/stylesheet-patterns/issues"
+  },
+  "homepage": "https://github.com/press22day/stylesheet-patterns",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-file-include": "^0.5.1"
+  }
+}
