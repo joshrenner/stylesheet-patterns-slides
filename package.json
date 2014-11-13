@@ -2,20 +2,32 @@
   "name": "stylesheet-patterns",
   "version": "1.0.0",
   "description": "Stylesheet Design Patterns for Better CSS",
+  "homepage": "http://demo.rooftop.mn/stylesheets/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test",
+    "start": ""
+  },
+  "author": {
+    "name": "Josh Renner",
+    "email": "josh@renner.mn"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/press22day/stylesheet-patterns.git"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "~0.10.0"
+  },
+  "dependencies": {
+    "underscore": "~1.5.1",
+    "express": "~2.5.9",
+    "mustache": "~0.7.2",
+    "socket.io": "~0.9.13"
+  },
   "bugs": {
     "url": "https://github.com/press22day/stylesheet-patterns/issues"
   },
-  "homepage": "https://github.com/press22day/stylesheet-patterns",
   "devDependencies": {
     "grunt-contrib-qunit": "~0.2.2",
     "grunt-contrib-jshint": "~0.6.4",
@@ -26,8 +38,13 @@
     "grunt-contrib-connect": "~0.4.1",
     "grunt-zip": "~0.7.0",
     "grunt": "~0.4.0",
-
     "gulp": "^3.8.10",
     "gulp-file-include": "^0.5.1"
-  }
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/hakimel/reveal.js/blob/master/LICENSE"
+    }
+  ]
 }
