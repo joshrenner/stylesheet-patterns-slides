@@ -49,7 +49,14 @@
 			@@include('selectors/intro.html')
 			@@include('media/intro.html')
 
-			@@include('antipatterns/intro.html')
+			<section>
+				@@include('antipatterns/intro.html')
+				@@include('antipatterns/parent-down.html')
+				@@include('antipatterns/complicated-selectors.html')
+				@@include('antipatterns/generic-unscoped.html')
+				@@include('antipatterns/aggressive-resets.html')
+				@@include('antipatterns/increasing-specificity.html')
+			</section>
 
 			<section>
 				@@include('patterns/intro.html')

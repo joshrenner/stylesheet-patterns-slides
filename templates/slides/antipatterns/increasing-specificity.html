@@ -1,0 +1,37 @@
+<section>
+	<h2>Increasing Specificity</h2>
+	<pre><code data-trim contenteditable>
+		.title {
+		color: #000;
+		}
+
+		...
+
+		.main .title {
+		color: #222;
+		}
+
+		...
+
+		.main > div .title {
+		color: #000;
+		}
+	</code></pre>
+	<pre><code data-trim contenteditable>
+		#callout .title {
+		color: #922;
+		}
+
+		...
+
+		#callout.muted .title {
+		color: #644;
+		}
+
+		...
+
+		.main .title {
+		color: #000 !important;
+		}
+	</code></pre>
+</section>
