@@ -1,0 +1,23 @@
+<section>
+	<h2><em>!default</em> flag</h2>
+	<pre><code data-trim contenteditable>
+		$height: auto !default;
+
+		.widget1 {
+			height: $height;
+		}
+		.widget2 {
+			$height: 100px;
+			height: $height;
+		}
+	</code></pre>
+	<p>outputs</p>
+	<pre><code data-trim contenteditable>
+		.widget1 {
+			height: auto;
+		}
+		.widget2 {
+			height: 100px;
+		}
+	</code></pre>
+</section>

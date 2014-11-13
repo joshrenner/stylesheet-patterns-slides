@@ -1,0 +1,28 @@
+<section>
+	<h2>@extend</h2>
+	<pre><code data-trim contenteditable>
+		.error {
+			border: 1px #f00;
+		}
+		.seriousError {
+			@extend .error;
+			border-width: 3px;
+		}
+		.criticalError {
+			@extend .seriousError;
+			background: #fdd;
+		}
+	</code></pre>
+	<p>outputs</p>
+	<pre><code data-trim contenteditable>
+		.error, .seriousError, .criticalError {
+			border: 1px #f00;
+		}
+		.seriousError, .criticalError {
+			border-width: 3px;
+		}
+		.criticalError {
+			background: #fdd;
+		}
+	</code></pre>
+</section>

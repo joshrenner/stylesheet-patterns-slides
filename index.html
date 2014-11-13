@@ -362,26 +362,26 @@
 			</section>
 
 			<section>
-	<section>
-		<h1>OK. Preprocessors.</h1>
+				<section>
+	<h1>OK. Preprocessors.</h1>
 
-		What do they offer?
-	</section>
-	<section>
-		<h2>Nesting</h2>
-						<pre><code data-trim contenteditable>
-							.page {
-							width: 100%;
-							.widget {
-							width: 50%;
-							.button {
-							width: 200px;
-							}
-							}
-							}
-							}
-						</code></pre>
-		<p>outputs</p>
+	What do they offer?
+</section>
+
+				<section>
+	<h2>Nesting</h2>
+	<pre><code data-trim contenteditable>
+		.page {
+			width: 100%;
+			.widget {
+				width: 50%;
+				.button {
+					width: 200px;
+				}
+			}
+		}
+	</code></pre>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.page {
 							width: 100%; }
@@ -391,9 +391,10 @@
 							width: 200px; }
 
 						</code></pre>
-	</section>
-	<section>
-		<h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
+</section>
+
+				<section>
+	<h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
 						<pre><code data-trim contenteditable>
 							a {
 							color: gray;
@@ -409,7 +410,7 @@
 							}
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							a {
 							color: gray; }
@@ -421,9 +422,10 @@
 							.ie-6 .block {
 							width: 102px; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Nested Media Queries</h2>
+</section>
+
+				<section>
+	<h2>Nested Media Queries</h2>
 						<pre><code data-trim contenteditable>
 							.screencolor{
 							@media screen {
@@ -436,7 +438,7 @@
 							color: black;
 							}
 							}						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							@media screen {
 							.screencolor {
@@ -453,9 +455,10 @@
 							color: black;
 							}
 							}						</code></pre>
-	</section>
-	<section>
-		<h2>Variables</h2>
+</section>
+
+				<section>
+	<h2>Variables</h2>
 						<pre><code data-trim contenteditable>
 							$width: 200px;
 
@@ -463,15 +466,16 @@
 							width: $width;
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.widget1 {
 							width: 200px;  }
 						</code></pre>
-	</section>
-	<section>
-		<h2><em>!default</em>
-			flag</h2>
+</section>
+
+				<section>
+	<h2><em>!default</em>
+		flag</h2>
 						<pre><code data-trim contenteditable>
 							$height: auto !default;
 
@@ -484,17 +488,18 @@
 							height: $height;
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.widget1 {
 							height: auto;  }
 							.widget2 {
 							height: 100px; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Mixins</h2>
-		<p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
+</section>
+
+				<section>
+	<h2>Mixins</h2>
+	<p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
 						<pre><code data-trim contenteditable>
 							@mixin color {
 							color: blue;
@@ -510,7 +515,7 @@
 							width: 100px;
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.aMixed {
 							color: blue;
@@ -519,10 +524,11 @@
 							color: blue;
 							width: 100px; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Mixin Arguments
-		</h2>
+</section>
+
+				<section>
+	<h2>Mixin Arguments
+	</h2>
 						<pre><code data-trim contenteditable>
 							@mixin color($color) {
 							color: $color;
@@ -536,17 +542,18 @@
 							@include color(red);
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.aMixed {
 							color: blue; }
 							.anotherMixed {
 							color: red; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Mixin Argument Defaults
-		</h2>
+</section>
+
+				<section>
+	<h2>Mixin Argument Defaults
+	</h2>
 						<pre><code data-trim contenteditable>
 							@mixin foo($width) {
 							width: $width;
@@ -565,7 +572,7 @@
 							}
 
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.aMixed {
 							color: blue; }
@@ -573,9 +580,10 @@
 							width: 200px;
 							color: red; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Mixin Keyword Arguments</h2>
+</section>
+
+				<section>
+	<h2>Mixin Keyword Arguments</h2>
 						<pre><code data-trim contenteditable>
 							@mixin foo($width: 100px, $height: 100px, $color: blue) {
 							width: $width;
@@ -587,7 +595,7 @@
 							@include foo($color: red);
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.foo {
 							width: 100px;
@@ -595,9 +603,10 @@
 							color: red;
 							}
 						</code></pre>
-	</section>
-	<section>
-		<h2>Passing Nested Content to Mixin</h2>
+</section>
+
+				<section>
+	<h2>Passing Nested Content to Mixin</h2>
 						<pre><code data-trim contenteditable>
 							@mixin apply-to-ie6-only {
 							* html {
@@ -610,15 +619,16 @@
 							}
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							* html #logo {
 							background-image: url(/logo.gif);
 							}
 						</code></pre>
-	</section>
-	<section>
-		<h2>Functions</h2>
+</section>
+
+				<section>
+	<h2>Functions</h2>
 						<pre><code data-trim contenteditable>
 							@function double($number) {
 							@return $number * 2;
@@ -628,14 +638,15 @@
 							width: double(100px);
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.foo {
 							width: 200px; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Number Operations</h2>
+</section>
+
+				<section>
+	<h2>Number Operations</h2>
 						<pre><code data-trim contenteditable>
 							p {
 							width: 1in + 8pt;
@@ -648,7 +659,7 @@
 							margin-left: 5px + 8px/2px;
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							p {
 							width: 1.111in; }
@@ -659,30 +670,31 @@
 							margin-left: 9px; }
 
 						</code></pre>
-		<br>
-		<p>Number Relational Operators: <strong>&lt;   &lt;=   &gt;=   &gt;</strong></p>
-		<p>Relational Operators for all types: <strong>==   !=</strong></p>
-	</section>
-	<section>
-		<h2>Color Operations</h2>
+	<br>
+	<p>Number Relational Operators: <strong>&lt;   &lt;=   &gt;=   &gt;</strong></p>
+	<p>Relational Operators for all types: <strong>==   !=</strong></p>
+</section>
+
+				<section>
+	<h2>Color Operations</h2>
 						<pre><code data-trim contenteditable>
 							color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
 						</code></pre>
 						<pre><code data-trim contenteditable>
 							color: #050709;
 						</code></pre>
-		<hr>
+	<hr>
 						<pre><code data-trim contenteditable>
 							color: #010203 * 2
 						</code></pre>
 						<pre><code data-trim contenteditable>
 							color: #020406;
 						</code></pre>
-		<hr>
+	<hr>
 						<pre><code data-trim contenteditable>
 							color: rgba(255, 255, 0, 0.75);
 						</code></pre>
-		<hr>
+	<hr>
 						<pre><code data-trim contenteditable>
 							$translucent-red: rgba(255, 0, 0, 0.5);
 
@@ -693,23 +705,24 @@
 							color: rgba(255, 0, 0, 0.9);
 							background-color: rgba(255, 0, 0, 0.25);
 						</code></pre>
-		<hr>
+	<hr>
 						<pre><code data-trim contenteditable>
 							color: rgba(#f00, 0.8);
 						</code></pre>
 						<pre><code data-trim contenteditable>
 							color: rgba(255,0,0,0.8);
 						</code></pre>
-		<hr>
+	<hr>
 						<pre><code data-trim contenteditable>
 							ie-hex-str(green)
 						</code></pre>
 						<pre><code data-trim contenteditable>
 							#FF00FF00
 						</code></pre>
-	</section>
-	<section>
-		<h2>Interpolation</h2>
+</section>
+
+				<section>
+	<h2>Interpolation</h2>
 						<pre><code data-trim contenteditable>
 							$text-size: 13px;
 							$line-height: 1.3;
@@ -719,15 +732,16 @@
 							font: #{$text-size}/#{$line-height};
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							body {
 							font: 13px/1.3; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>Partials, @import, @include</h2>
-		<p>_text.scss</p>
+</section>
+
+				<section>
+	<h2>Partials, @import, @include</h2>
+	<p>_text.scss</p>
 						<pre><code data-trim contenteditable>
 							p {
 							font-size: 1em;
@@ -740,7 +754,7 @@
 							font-family: Helvetica;
 							}
 						</code></pre>
-		<p>common.scss</p>
+	<p>common.scss</p>
 						<pre><code data-trim contenteditable>
 							@import "text";
 
@@ -748,8 +762,8 @@
 							@include foo;
 							}
 						</code></pre>
-		<hr>
-		<p>common.css</p>
+	<hr>
+	<p>common.css</p>
 						<pre><code data-trim contenteditable>
 							p {
 							font-size: 1em; }
@@ -758,9 +772,10 @@
 							body {
 							font-family: Helvetica; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>@extend</h2>
+</section>
+
+				<section>
+	<h2>@extend</h2>
 						<pre><code data-trim contenteditable>
 							.error {
 							border: 1px #f00;
@@ -775,7 +790,7 @@
 							}
 
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.error, .seriousError, .criticalError {
 							border: 1px #f00; }
@@ -786,9 +801,10 @@
 							.criticalError {
 							background: #fdd; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>@if, @else if, @else</h2>
+</section>
+
+				<section>
+	<h2>@if, @else if, @else</h2>
 						<pre><code data-trim contenteditable>
 							$fancy = 0;
 
@@ -807,14 +823,15 @@
 							}
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.foo {
 							border-style: #none; }
 						</code></pre>
-	</section>
-	<section>
-		<h2>@each</h2>
+</section>
+
+				<section>
+	<h2>@each</h2>
 						<pre><code data-trim contenteditable>
 							$buttons: 'facebook' 'twitter' 'linkedin' 'github';
 
@@ -825,7 +842,7 @@
 							}
 							}
 						</code></pre>
-		<p>outputs</p>
+	<p>outputs</p>
 						<pre><code data-trim contenteditable>
 							.button-facebook {
 							background: url(icons/facebook.png); }
@@ -836,8 +853,9 @@
 							.button-github {
 							background: url(icons/github.png); }
 						</code></pre>
-	</section>
 </section>
+
+			</section>
 
 			<section data-markdown>
 	<script type="text/template">

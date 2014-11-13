@@ -1,0 +1,32 @@
+<section>
+	<h2>Nested Media Queries</h2>
+						<pre><code data-trim contenteditable>
+							.screencolor{
+							@media screen {
+							color: green;
+							@media (min-width:768px) {
+							color: red;
+							}
+							}
+							@media tv {
+							color: black;
+							}
+							}						</code></pre>
+	<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							@media screen {
+							.screencolor {
+							color: green;
+							}
+							}
+							@media screen and (min-width: 768px) {
+							.screencolor {
+							color: red;
+							}
+							}
+							@media tv {
+							.screencolor {
+							color: black;
+							}
+							}						</code></pre>
+</section>

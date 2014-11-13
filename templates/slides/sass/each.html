@@ -1,0 +1,24 @@
+<section>
+	<h2>@each</h2>
+	<pre><code data-trim contenteditable>
+		$buttons: 'facebook' 'twitter' 'linkedin' 'github';
+
+		@each $button in $buttons {
+			.button-#{$button} {
+				background:
+				url("icons/#{$button}.png");
+			}
+		}
+	</code></pre>
+	<p>outputs</p>
+	<pre><code data-trim contenteditable>
+		.button-facebook {
+			background: url(icons/facebook.png); }
+		.button-twitter {
+			background: url(icons/twitter.png); }
+		.button-linkedin {
+			background: url(icons/linkedin.png); }
+		.button-github {
+			background: url(icons/github.png); }
+	</code></pre>
+</section>

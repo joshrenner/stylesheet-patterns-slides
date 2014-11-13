@@ -1,0 +1,21 @@
+<section>
+	<h2>Passing Nested Content to Mixin</h2>
+						<pre><code data-trim contenteditable>
+							@mixin apply-to-ie6-only {
+							* html {
+							@content;
+							}
+							}
+							@include apply-to-ie6-only {
+							#logo {
+							background-image: url(/logo.gif);
+							}
+							}
+						</code></pre>
+	<p>outputs</p>
+						<pre><code data-trim contenteditable>
+							* html #logo {
+							background-image: url(/logo.gif);
+							}
+						</code></pre>
+</section>
