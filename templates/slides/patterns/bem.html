@@ -1,22 +1,28 @@
 <section>
-	<h2>BEM</h2>
-	<h3>Block Element Modifier</h3>
-	<small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
-	<br>
-	<p>The naming convention follows this pattern:</p>
+  <h2>BEM</h2>
+
+  <h3>Block Element Modifier</h3>
+  <small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
+  <br>
+
+  <p>The naming convention follows this pattern:</p>
 						<pre><code data-trim contenteditable>
-							.block {}
-							.block__element {}
-							.block--modifier {}
-						</code></pre>
-	<p><code>.block</code> represents the higher level of an abstraction or component.</p>
-	<p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
-	<p><code>.block--modifier</code> represents a different state or version of .block.</p>
-	<br>
-	<p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen delimited, for example:</p>
+              .block {}
+              .block__element {}
+              .block--modifier {}
+            </code></pre>
+  <p><code>.block</code> represents the higher level of an abstraction or component.</p>
+
+  <p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
+
+  <p><code>.block--modifier</code> represents a different state or version of .block.</p>
+  <br>
+
+  <p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen
+    delimited, for example:</p>
 						<pre><code data-trim contenteditable>
-							.site-search {} /* Block */
-							.site-search__field {} /* Element */
-							.site-search--full {} /* Modifier */
-						</code></pre>
+              .site-search {} /* Block */
+              .site-search__field {} /* Element */
+              .site-search--full {} /* Modifier */
+            </code></pre>
 </section>

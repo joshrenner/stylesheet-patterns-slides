@@ -1,26 +1,26 @@
 <section data-markdown>
-	<script type="text/template">
-		##LESS
+  <script type="text/template">
+    ##LESS
 
-		- Client-side
-		- @variables
-		<pre><code data-trim contenteditable>
-			@fnord:  "I am fnord.";
-			@var:    "fnord";
-			content: @@var;
-		</code></pre>
-		<p>outputs:</p>
-		<pre><code data-trim contenteditable>
-			content: "I am fnord.";
-		</code></pre>
-		- mixins
-		<pre><code data-trim contenteditable>
-			.mixin {
-			color: red;
-			}
-			.widget {
-			.mixin;
-			}
-		</code></pre>
-	</script>
+    - Client-side
+    - @variables
+    <pre><code data-trim contenteditable>
+      @fnord: "I am fnord.";
+      @var: "fnord";
+      content: @@var;
+    </code></pre>
+    <p>outputs:</p>
+    <pre><code data-trim contenteditable>
+      content: "I am fnord.";
+    </code></pre>
+    - mixins
+    <pre><code data-trim contenteditable>
+      .mixin {
+      color: red;
+      }
+      .widget {
+      .mixin;
+      }
+    </code></pre>
+  </script>
 </section>

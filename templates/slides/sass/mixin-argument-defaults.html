@@ -1,31 +1,31 @@
 <section>
-	<h2>Mixin Argument Defaults
-	</h2>
+  <h2>Mixin Argument Defaults
+  </h2>
 	<pre><code data-trim contenteditable>
-@mixin foo($width) {
-	width: $width;
-}
-@mixin bar($color: blue) {
-	color: $color;
-}
+    @mixin foo($width) {
+    width: $width;
+    }
+    @mixin bar($color: blue) {
+    color: $color;
+    }
 
-.aMixed {
-	@include foo;
-	@include bar;
-}
-.anotherMixed {
-	@include foo(200px);
-	@include bar(red);
-}
-	</code></pre>
-	<p>outputs</p>
+    .aMixed {
+    @include foo;
+    @include bar;
+    }
+    .anotherMixed {
+    @include foo(200px);
+    @include bar(red);
+    }
+  </code></pre>
+  <p>outputs</p>
 	<pre><code data-trim contenteditable>
-.aMixed {
-	color: blue;
-}
-.anotherMixed {
-	width: 200px;
-	color: red;
-}
-	</code></pre>
+    .aMixed {
+    color: blue;
+    }
+    .anotherMixed {
+    width: 200px;
+    color: red;
+    }
+  </code></pre>
 </section>

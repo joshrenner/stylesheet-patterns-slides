@@ -1,34 +1,35 @@
 <section>
-	<h2>Partials, @import, @include</h2>
-	<p>_text.scss</p>
-						<pre><code data-trim contenteditable>
-							p {
-							font-size: 1em;
-							}
-							h1 {
-							font-size: 2em;
-							}
+  <h2>Partials, @import, @include</h2>
 
-							@mixin foo {
-							font-family: Helvetica;
-							}
-						</code></pre>
-	<p>common.scss</p>
+  <p>_text.scss</p>
 						<pre><code data-trim contenteditable>
-							@import "text";
+              p {
+              font-size: 1em;
+              }
+              h1 {
+              font-size: 2em;
+              }
 
-							body {
-							@include foo;
-							}
-						</code></pre>
-	<hr>
-	<p>common.css</p>
+              @mixin foo {
+              font-family: Helvetica;
+              }
+            </code></pre>
+  <p>common.scss</p>
 						<pre><code data-trim contenteditable>
-							p {
-							font-size: 1em; }
-							h1 {
-							font-size: 2em; }
-							body {
-							font-family: Helvetica; }
-						</code></pre>
+              @import "text";
+
+              body {
+              @include foo;
+              }
+            </code></pre>
+  <hr>
+  <p>common.css</p>
+						<pre><code data-trim contenteditable>
+              p {
+              font-size: 1em; }
+              h1 {
+              font-size: 2em; }
+              body {
+              font-family: Helvetica; }
+            </code></pre>
 </section>

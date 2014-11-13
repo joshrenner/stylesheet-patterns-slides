@@ -1,48 +1,48 @@
 <section>
-	<section data-markdown>
-		<script type="text/template">
-			#Efficient Selectors
+  <section data-markdown>
+    <script type="text/template">
+      #Efficient Selectors
 
-			Some guidelines to keep in mind when crafting your selectors
-		</script>
-	</section>
-	<section>
-		<p>CSS gets evaluated from right to left.</p>
+      Some guidelines to keep in mind when crafting your selectors
+    </script>
+  </section>
+  <section>
+    <p>CSS gets evaluated from right to left.</p>
 
-		<p>The evaluation of any more than a single element to determine styling is inefficient.</p>
+    <p>The evaluation of any more than a single element to determine styling is inefficient.</p>
 
-		<p>The four rules Google Page Speed recommendations consider inefficient:</p>
-		<ul>
-			<li>Rules with descendant selectors.
-				<br>E.g. <code>#content h3</code></li>
-			<li>Rules with child or adjacent selectors.
-				<br>E.g. <code>#content &gt; h3</code></li>
-			<li>Rules with overly qualified selectors.
-				<br>E.g. <code>div#content &gt; h3</code></li>
-			<li>Rules that apply :hover to non-link elements.
-				<br>E.g. <code>div#content:hover</code></li>
-		</ul>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			The guidelines I try to embrace:
+    <p>The four rules Google Page Speed recommendations consider inefficient:</p>
+    <ul>
+      <li>Rules with descendant selectors.
+        <br>E.g. <code>#content h3</code></li>
+      <li>Rules with child or adjacent selectors.
+        <br>E.g. <code>#content &gt; h3</code></li>
+      <li>Rules with overly qualified selectors.
+        <br>E.g. <code>div#content &gt; h3</code></li>
+      <li>Rules that apply :hover to non-link elements.
+        <br>E.g. <code>div#content:hover</code></li>
+    </ul>
+  </section>
+  <section data-markdown>
+    <script type="text/template">
+      The guidelines I try to embrace:
 
 
-			- Use child selectors. E.g. <code>.module &gt; h3</code>
-			- Avoid tag selectors for common elements. E.g. <code>.module div</code>
-			- Use class names as the right-most selector.
-			- Avoid qualifying class names. E.g. <code>div.module</code>
-		</script>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			##Specificity Wars
+      - Use child selectors. E.g. <code>.module &gt; h3</code>
+      - Avoid tag selectors for common elements. E.g. <code>.module div</code>
+      - Use class names as the right-most selector.
+      - Avoid qualifying class names. E.g. <code>div.module</code>
+    </script>
+  </section>
+  <section data-markdown>
+    <script type="text/template">
+      ##Specificity Wars
 
-			Watch out for these:
+      Watch out for these:
 
-			- Rules with ids.
-			- Rules with elements.
-			- Rules with !important.
-		</script>
-	</section>
+      - Rules with ids.
+      - Rules with elements.
+      - Rules with !important.
+    </script>
+  </section>
 </section>

@@ -1,22 +1,22 @@
 <section>
-	<h2>Mixin Keyword Arguments</h2>
+  <h2>Mixin Keyword Arguments</h2>
 						<pre><code data-trim contenteditable>
-							@mixin foo($width: 100px, $height: 100px, $color: blue) {
-							width: $width;
-							height: $height;
-							color: $color;
-							}
+              @mixin foo($width: 100px, $height: 100px, $color: blue) {
+              width: $width;
+              height: $height;
+              color: $color;
+              }
 
-							.foo {
-							@include foo($color: red);
-							}
-						</code></pre>
-	<p>outputs</p>
+              .foo {
+              @include foo($color: red);
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							.foo {
-							width: 100px;
-							height: 100px;
-							color: red;
-							}
-						</code></pre>
+              .foo {
+              width: 100px;
+              height: 100px;
+              color: red;
+              }
+            </code></pre>
 </section>

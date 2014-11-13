@@ -1,27 +1,27 @@
 <section>
-	<h2>@if, @else if, @else</h2>
+  <h2>@if, @else if, @else</h2>
 	<pre><code data-trim contenteditable>
-		$fancy = 0;
+    $fancy = 0;
 
-		.foo {
-			@if $fancy == 1 {
-				border-style: solid;
-			}
-			@else if $fancy == 2 {
-				border-style: dotted;
-			}
-			@else if $fancy == 3 {
-				border-style: double;
-			}
-			@else {
-				border-style: none;
-			}
-		}
-	</code></pre>
-	<p>outputs</p>
+    .foo {
+    @if $fancy == 1 {
+    border-style: solid;
+    }
+    @else if $fancy == 2 {
+    border-style: dotted;
+    }
+    @else if $fancy == 3 {
+    border-style: double;
+    }
+    @else {
+    border-style: none;
+    }
+    }
+  </code></pre>
+  <p>outputs</p>
 	<pre><code data-trim contenteditable>
-		.foo {
-			border-style: #none;
-		}
-	</code></pre>
+    .foo {
+    border-style: #none;
+    }
+  </code></pre>
 </section>

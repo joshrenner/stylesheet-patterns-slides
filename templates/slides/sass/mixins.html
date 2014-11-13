@@ -1,28 +1,37 @@
 <section>
-	<h2>Mixins</h2>
-	<p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
-						<pre><code data-trim contenteditable>
-							@mixin color {
-							color: blue;
-							}
+  <h2>Mixins</h2>
 
-							.aMixed {
-							@include color;
-							width: 200px;
-							}
+  <p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
 
-							.anotherMixed {
-							@include color;
-							width: 100px;
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.aMixed {
-							color: blue;
-							width: 200px; }
-							.anotherMixed {
-							color: blue;
-							width: 100px; }
-						</code></pre>
+
+<pre><code data-trim>
+@mixin color {
+  color: blue;
+}
+
+.aMixed {
+  @include color;
+  width: 200px;
+}
+
+.anotherMixed {
+  @include color;
+  width: 100px;
+}
+</code></pre>
+
+
+  <p>outputs</p>
+
+
+<pre><code data-trim contenteditable>
+.aMixed {
+  color: blue;
+  width: 200px;
+}
+.anotherMixed {
+  color: blue;
+  width: 100px;
+}
+</code></pre>
 </section>

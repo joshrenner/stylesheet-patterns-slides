@@ -13,6 +13,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+	<link rel="stylesheet" href="css/grid.css">
 	<link rel="stylesheet" href="css/reveal.min.css">
 	<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
@@ -43,851 +44,905 @@
 
 			<section>
 				<section>
-	<h1>Stylesheet Patterns</h1>
-	<p>Stylesheet Design Patterns for Better CSS</p>
-	<p>
-		<small>Created by <a href="http://www.linkedin.com/in/joshrenner/">Josh Renner</a> / <a href="http://twitter.com/joshrenner">@joshrenner</a> / <a href="mailto:josh@renner.mn">josh@renner.mn</a></small>
-	</p>
-	<br>
-	<br>
-	<p>
-		<a href="http://lab.hakim.se/reveal-js">Made with Reveal.js</a>
-	</p>
+  <h1>Stylesheet Patterns</h1>
+
+  <p>Stylesheet Design Patterns for Better CSS</p>
+
+  <p>
+    <small>Created by <a href="http://www.linkedin.com/in/joshrenner/">Josh Renner</a> / <a
+        href="http://twitter.com/joshrenner">@joshrenner</a> / <a href="mailto:josh@renner.mn">josh@renner.mn</a>
+    </small>
+  </p>
+  <br>
+  <br>
+
+  <p>
+    <a href="http://lab.hakim.se/reveal-js">Made with Reveal.js</a>
+  </p>
 </section>
 
 				<section>
-	<p>If you are starting a green-field app, you can choose patterns that will effect your efficiency down the road. If you are taking on a brown-field refactor, you will need to introduce patterns that reduce friction.</p>
+  <p>If you are starting a green-field app, you can choose patterns that will effect your efficiency down the road. If
+    you are taking on a brown-field refactor, you will need to introduce patterns that reduce friction.</p>
 </section>
 			</section>
 
 			<section>
-	<section data-markdown>
-		<script type="text/template">
-			#Efficient Selectors
+  <section data-markdown>
+    <script type="text/template">
+      #Efficient Selectors
 
-			Some guidelines to keep in mind when crafting your selectors
-		</script>
-	</section>
-	<section>
-		<p>CSS gets evaluated from right to left.</p>
+      Some guidelines to keep in mind when crafting your selectors
+    </script>
+  </section>
+  <section>
+    <p>CSS gets evaluated from right to left.</p>
 
-		<p>The evaluation of any more than a single element to determine styling is inefficient.</p>
+    <p>The evaluation of any more than a single element to determine styling is inefficient.</p>
 
-		<p>The four rules Google Page Speed recommendations consider inefficient:</p>
-		<ul>
-			<li>Rules with descendant selectors.
-				<br>E.g. <code>#content h3</code></li>
-			<li>Rules with child or adjacent selectors.
-				<br>E.g. <code>#content &gt; h3</code></li>
-			<li>Rules with overly qualified selectors.
-				<br>E.g. <code>div#content &gt; h3</code></li>
-			<li>Rules that apply :hover to non-link elements.
-				<br>E.g. <code>div#content:hover</code></li>
-		</ul>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			The guidelines I try to embrace:
+    <p>The four rules Google Page Speed recommendations consider inefficient:</p>
+    <ul>
+      <li>Rules with descendant selectors.
+        <br>E.g. <code>#content h3</code></li>
+      <li>Rules with child or adjacent selectors.
+        <br>E.g. <code>#content &gt; h3</code></li>
+      <li>Rules with overly qualified selectors.
+        <br>E.g. <code>div#content &gt; h3</code></li>
+      <li>Rules that apply :hover to non-link elements.
+        <br>E.g. <code>div#content:hover</code></li>
+    </ul>
+  </section>
+  <section data-markdown>
+    <script type="text/template">
+      The guidelines I try to embrace:
 
 
-			- Use child selectors. E.g. <code>.module &gt; h3</code>
-			- Avoid tag selectors for common elements. E.g. <code>.module div</code>
-			- Use class names as the right-most selector.
-			- Avoid qualifying class names. E.g. <code>div.module</code>
-		</script>
-	</section>
-	<section data-markdown>
-		<script type="text/template">
-			##Specificity Wars
+      - Use child selectors. E.g. <code>.module &gt; h3</code>
+      - Avoid tag selectors for common elements. E.g. <code>.module div</code>
+      - Use class names as the right-most selector.
+      - Avoid qualifying class names. E.g. <code>div.module</code>
+    </script>
+  </section>
+  <section data-markdown>
+    <script type="text/template">
+      ##Specificity Wars
 
-			Watch out for these:
+      Watch out for these:
 
-			- Rules with ids.
-			- Rules with elements.
-			- Rules with !important.
-		</script>
-	</section>
+      - Rules with ids.
+      - Rules with elements.
+      - Rules with !important.
+    </script>
+  </section>
 </section>
 
 			<section>
-	<h1>Media Queries</h1>
+  <h1>Media Queries</h1>
 
-	<aside class="notes">
-		Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-	</aside>
+  <aside class="notes">
+    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker
+    notes window (hit 's' on your keyboard).
+  </aside>
 </section>
 
 			<section>
 				<section data-markdown>
-	<script type="text/template">
-		#Anti-Patterns
-	</script>
+  <script type="text/template">
+    #Anti-Patterns
+  </script>
 </section>
 
 				<section>
-	<h2>Parent Down Modifactions</h2>
-	<br>
+  <h2>Parent Down Modifactions</h2>
+  <br>
 	<pre><code data-trim contenteditable>
-		.widget {
-		color: red;
-		border: 1px solid black;
-		width: 50%;
-		}
+    .widget {
+    color: red;
+    border: 1px solid black;
+    width: 50%;
+    }
 
-		#sidebar .widget {
-		width: 100%;
-		}
-		body.homepage .widget {
-		border: none;
-		}
-	</code></pre>
-	<p>Software entities should be open for extension, but closed for modification.
+    #sidebar .widget {
+    width: 100%;
+    }
+    body.homepage .widget {
+    border: none;
+    }
+  </code></pre>
+  <p>Software entities should be open for extension, but closed for modification.
 </section>
 
 				<section>
-	<h2>Overly Complicated Selectors</h2>
+  <h2>Overly Complicated Selectors</h2>
 	<pre><code data-trim contenteditable>
-		#main-nav ul li ul li div {}
-		#sidebar > div > h3 {}
-	</code></pre>
+    #main-nav ul li ul li div {}
+    #sidebar > div > h3 {}
+  </code></pre>
 </section>
 
 				<section>
-	<h2>Overly Generic, Unscoped Class Names</h2>
+  <h2>Overly Generic, Unscoped Class Names</h2>
 	<pre><code data-trim contenteditable>
-		.title {}
-	</code></pre>
+    .title {}
+  </code></pre>
 </section>
 
 				<section>
-	<h2>Overly Aggressive Resets</h2>
+  <h2>Overly Aggressive Resets</h2>
 	<pre><code data-trim contenteditable>
-		hr {
-		border: 1px solid #000;
-		}
-	</code></pre>
+    hr {
+    border: 1px solid #000;
+    }
+  </code></pre>
 </section>
 
 				<section>
-	<h2>Increasing Specificity</h2>
+  <h2>Increasing Specificity</h2>
 	<pre><code data-trim contenteditable>
-		.title {
-		color: #000;
-		}
+    .title {
+    color: #000;
+    }
 
-		...
+    ...
 
-		.main .title {
-		color: #222;
-		}
+    .main .title {
+    color: #222;
+    }
 
-		...
+    ...
 
-		.main > div .title {
-		color: #000;
-		}
-	</code></pre>
+    .main > div .title {
+    color: #000;
+    }
+  </code></pre>
 	<pre><code data-trim contenteditable>
-		#callout .title {
-		color: #922;
-		}
+    #callout .title {
+    color: #922;
+    }
 
-		...
+    ...
 
-		#callout.muted .title {
-		color: #644;
-		}
+    #callout.muted .title {
+    color: #644;
+    }
 
-		...
+    ...
 
-		.main .title {
-		color: #000 !important;
-		}
-	</code></pre>
+    .main .title {
+    color: #000 !important;
+    }
+  </code></pre>
 </section>
 
 			</section>
 
 			<section>
 				<section data-markdown>
-	<script type="text/template">
-		#Patterns
-	</script>
+  <script type="text/template">
+    #Patterns
+  </script>
 </section>
 
 				<section>
-	<h2>Single Responsibility Principle</h2>
-	<p><em>A class for every purpose</em></p>
-	<br>
+  <h2>Single Responsibility Principle</h2>
+
+  <p><em>A class for every purpose</em></p>
+  <br>
 						<pre><code data-trim contenteditable>
-							<div class="block promoted user clearfix header">
-								<h4 class="headline promoted name">Blake Blakerson</h4>
-								<p class="description text promoted">Abdid blaisden floyancy</p>
-							</div>
-						</code></pre>
-	<br>
-	<p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
+              <div class="block promoted user clearfix header">
+                <h4 class="headline promoted name">Blake Blakerson</h4>
+
+                <p class="description text promoted">Abdid blaisden floyancy</p>
+              </div>
+            </code></pre>
+  <br>
+
+  <p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
 </section>
 
 				<section>
-	<h2>Module Scoping</h2>
+  <h2>Module Scoping</h2>
 	<pre><code data-trim contenteditable>
-		.widget {
-		//elements
-		.title {}
-		.body {}
-		> button {}
+    .widget {
+    //elements
+    .title {}
+    .body {}
+    > button {}
 
-		//states
-		&.collapsed {}
+    //states
+    &.collapsed {}
 
-		//other variations
-		.ie-8 & {}
-		}
-	</code></pre>
+    //other variations
+    .ie-8 & {}
+    }
+  </code></pre>
 </section>
 
 				<section>
-	<h2>BEM</h2>
-	<h3>Block Element Modifier</h3>
-	<small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
-	<br>
-	<p>The naming convention follows this pattern:</p>
+  <h2>BEM</h2>
+
+  <h3>Block Element Modifier</h3>
+  <small>Namespacing, Seperation of Concerns, Extend with Modifiers</small>
+  <br>
+
+  <p>The naming convention follows this pattern:</p>
 						<pre><code data-trim contenteditable>
-							.block {}
-							.block__element {}
-							.block--modifier {}
-						</code></pre>
-	<p><code>.block</code> represents the higher level of an abstraction or component.</p>
-	<p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
-	<p><code>.block--modifier</code> represents a different state or version of .block.</p>
-	<br>
-	<p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen delimited, for example:</p>
+              .block {}
+              .block__element {}
+              .block--modifier {}
+            </code></pre>
+  <p><code>.block</code> represents the higher level of an abstraction or component.</p>
+
+  <p><code>.block__element</code> represents a descendent of .block that helps form .block as a whole.</p>
+
+  <p><code>.block--modifier</code> represents a different state or version of .block.</p>
+  <br>
+
+  <p>The reason for double rather than single hyphens and underscores is so that your block itself can be hyphen
+    delimited, for example:</p>
 						<pre><code data-trim contenteditable>
-							.site-search {} /* Block */
-							.site-search__field {} /* Element */
-							.site-search--full {} /* Modifier */
-						</code></pre>
+              .site-search {} /* Block */
+              .site-search__field {} /* Element */
+              .site-search--full {} /* Modifier */
+            </code></pre>
 </section>
 
 				<section>
-	<h2>Separation of Structure From Skin</h2>
-	<br>
+  <h2>Separation of Structure From Skin</h2>
+  <br>
 						<pre><code data-trim contenteditable>
-							.button {
-							width: 200px;
-							height: 50px;
-							}
+              .button {
+              width: 200px;
+              height: 50px;
+              }
 
-							.box {
-							width: 400px;
-							overflow: hidden;
-							}
+              .box {
+              width: 400px;
+              overflow: hidden;
+              }
 
-							.widget {
-							width: 500px;
-							min-height: 200px;
-							overflow: auto;
-							}
+              .widget {
+              width: 500px;
+              min-height: 200px;
+              overflow: auto;
+              }
 
-							.skin {
-							border: solid 1px #ccc;
-							background: linear-gradient(#ccc, #222);
-							box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
-							}
-						</code></pre>
+              .skin {
+              border: solid 1px #ccc;
+              background: linear-gradient(#ccc, #222);
+              box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
+              }
+            </code></pre>
 </section>
 
 				<section>
-	<h2>Separation of Containers and Content</h2>
+  <h2>Separation of Containers and Content</h2>
 						<pre><code data-trim contenteditable>
-							// not this
-							.widget h3 {
-							font-size: 14px;
-							color: #333;
-							margin-top: 10px;
-							}
+              // not this
+              .widget h3 {
+              font-size: 14px;
+              color: #333;
+              margin-top: 10px;
+              }
 
-							// better reuse
-							.widget {
-							padding-top: 10px;
-							}
-							h3 {
-							font-size: 14px;
-							color: #333;
-							}
-						</code></pre>
+              // better reuse
+              .widget {
+              padding-top: 10px;
+              }
+              h3 {
+              font-size: 14px;
+              color: #333;
+              }
+            </code></pre>
 </section>
 
 			</section>
 
 			<section>
 				<section>
-	<h1>Preprocessors?</h1>
-	<p><em>Why does anything need to change?</em></p>
+  <h1>Preprocessors?</h1>
 
-	<h2 class="fragment">It doesn't</h2>
-	<p class="fragment">
-		<strong>CSS is still CSS</strong><br>
-		<small>Supersets are inclusive. Architecture can be.</small>
-	</p>
-	<p class="fragment">
-		<strong>Layers impede before they payoff</strong><br>
-		<small>Skill sets and timelines may take precedence.</small>
-	</p>
-	<p class="fragment">
-		<strong>Scalability is not the only objective</strong>
-		<small>But scalability is not the only reason to choose a preprocessor...</small>
-	</p>
+  <p><em>Why does anything need to change?</em></p>
+
+  <h2 class="fragment">It doesn't</h2>
+
+  <p class="fragment">
+    <strong>CSS is still CSS</strong><br>
+    <small>Supersets are inclusive. Architecture can be.</small>
+  </p>
+  <p class="fragment">
+    <strong>Layers impede before they payoff</strong><br>
+    <small>Skill sets and timelines may take precedence.</small>
+  </p>
+  <p class="fragment">
+    <strong>Scalability is not the only objective</strong>
+    <small>But scalability is not the only reason to choose a preprocessor...</small>
+  </p>
 </section>
 
 				<section data-markdown>
-	<script type="text/template">
-		##The styles need to scale
-		- Multiple applications with a common brand
-		- Application with multiple brands
-		- Complex visual states/views (catch all)
-	</script>
+  <script type="text/template">
+    ##The styles need to scale
+    - Multiple applications with a common brand
+    - Application with multiple brands
+    - Complex visual states/views (catch all)
+  </script>
 </section>
 
 				<section data-markdown>
-	<script type="text/template">
-		##The styles are distributed
-		- Locations - <em>modularity</em>
-		- Time - <em>maintainability</em>
-		- Disciplines - <em>adoption</em>
-	</script>
+  <script type="text/template">
+    ##The styles are distributed
+    - Locations - <em>modularity</em>
+    - Time - <em>maintainability</em>
+    - Disciplines - <em>adoption</em>
+  </script>
 </section>
 
 			</section>
 
-			<section>
-				<section>
-	<h1>OK. Preprocessors.</h1>
+<section>
+<section>
+  <h1>OK. Preprocessors.</h1>
 
-	What do they offer?
+  What do they offer?
 </section>
 
-				<section>
-	<h2>Nesting</h2>
+<section>
+  <h2>Nesting</h2>
 	<pre><code data-trim contenteditable>
-		.page {
-			width: 100%;
-			.widget {
-				width: 50%;
-				.button {
-					width: 200px;
-				}
-			}
-		}
-	</code></pre>
-	<p>outputs</p>
+    .page {
+    width: 100%;
+    .widget {
+    width: 50%;
+    .button {
+    width: 200px;
+    }
+    }
+    }
+  </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							.page {
-							width: 100%; }
-							.page .widget {
-							width: 50%; }
-							.page .widget .button {
-							width: 200px; }
+              .page {
+              width: 100%; }
+              .page .widget {
+              width: 50%; }
+              .page .widget .button {
+              width: 200px; }
 
-						</code></pre>
+            </code></pre>
 </section>
 
-				<section>
-	<h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
+<section>
+  <h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
 						<pre><code data-trim contenteditable>
-							a {
-							color: gray;
-							&:hover {
-							color: black;
-							}
-							}
+              a {
+              color: gray;
+              &:hover {
+              color: black;
+              }
+              }
 
-							.block {
-							width: 100px;
-							.ie-6 & {
-							width: 102px;
-							}
-							}
-						</code></pre>
-	<p>outputs</p>
+              .block {
+              width: 100px;
+              .ie-6 & {
+              width: 102px;
+              }
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							a {
-							color: gray; }
-							a:hover {
-							color: black; }
+              a {
+              color: gray; }
+              a:hover {
+              color: black; }
 
-							.block {
-							width: 100px; }
-							.ie-6 .block {
-							width: 102px; }
-						</code></pre>
+              .block {
+              width: 100px; }
+              .ie-6 .block {
+              width: 102px; }
+            </code></pre>
 </section>
 
-				<section>
-	<h2>Nested Media Queries</h2>
+<section>
+  <h2>Nested Media Queries</h2>
 						<pre><code data-trim contenteditable>
-							.screencolor{
-							@media screen {
-							color: green;
-							@media (min-width:768px) {
-							color: red;
-							}
-							}
-							@media tv {
-							color: black;
-							}
-							}						</code></pre>
-	<p>outputs</p>
+              .screencolor{
+              @media screen {
+              color: green;
+              @media (min-width:768px) {
+              color: red;
+              }
+              }
+              @media tv {
+              color: black;
+              }
+              } </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							@media screen {
-							.screencolor {
-							color: green;
-							}
-							}
-							@media screen and (min-width: 768px) {
-							.screencolor {
-							color: red;
-							}
-							}
-							@media tv {
-							.screencolor {
-							color: black;
-							}
-							}						</code></pre>
+              @media screen {
+              .screencolor {
+              color: green;
+              }
+              }
+              @media screen and (min-width: 768px) {
+              .screencolor {
+              color: red;
+              }
+              }
+              @media tv {
+              .screencolor {
+              color: black;
+              }
+              } </code></pre>
 </section>
 
-				<section>
-	<h2>Variables</h2>
+<section>
+  <h2>Variables</h2>
 						<pre><code data-trim contenteditable>
-							$width: 200px;
+              $width: 200px;
 
-							.widget1 {
-							width: $width;
-							}
-						</code></pre>
-	<p>outputs</p>
+              .widget1 {
+              width: $width;
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							.widget1 {
-							width: 200px;  }
-						</code></pre>
+              .widget1 {
+              width: 200px; }
+            </code></pre>
 </section>
 
-				<section>
-	<h2><em>!default</em>
-		flag</h2>
-						<pre><code data-trim contenteditable>
-							$height: auto !default;
+<section>
+  <h2><em>!default</em> flag</h2>
+<pre><code data-trim>
+$height: auto !default;
 
-							.widget1 {
-							height: $height;
-							}
-
-							.widget2 {
-							$height: 100px;
-							height: $height;
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.widget1 {
-							height: auto;  }
-							.widget2 {
-							height: 100px; }
-						</code></pre>
+.widget1 {
+  height: $height;
+}
+.widget2 {
+  $height: 100px;
+  height: $height;
+}
+</code></pre>
+<p>outputs</p>
+<pre><code data-trim>
+.widget1 {
+  height: auto;
+}
+.widget2 {
+  height: 100px;
+}
+</code></pre>
 </section>
 
-				<section>
-	<h2>Mixins</h2>
-	<p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
-						<pre><code data-trim contenteditable>
-							@mixin color {
-							color: blue;
-							}
+<section>
+  <h2>Mixins</h2>
 
-							.aMixed {
-							@include color;
-							width: 200px;
-							}
+  <p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
 
-							.anotherMixed {
-							@include color;
-							width: 100px;
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.aMixed {
-							color: blue;
-							width: 200px; }
-							.anotherMixed {
-							color: blue;
-							width: 100px; }
-						</code></pre>
+
+<pre><code data-trim>
+@mixin color {
+  color: blue;
+}
+
+.aMixed {
+  @include color;
+  width: 200px;
+}
+
+.anotherMixed {
+  @include color;
+  width: 100px;
+}
+</code></pre>
+
+
+  <p>outputs</p>
+
+
+<pre><code data-trim contenteditable>
+.aMixed {
+  color: blue;
+  width: 200px;
+}
+.anotherMixed {
+  color: blue;
+  width: 100px;
+}
+</code></pre>
 </section>
 
-				<section>
-	<h2>Mixin Arguments
-	</h2>
+<section>
+  <h2>Mixin Arguments
+  </h2>
 						<pre><code data-trim contenteditable>
-							@mixin color($color) {
-							color: $color;
-							}
+              @mixin color($color) {
+              color: $color;
+              }
 
-							.aMixed {
-							@include color(blue);
-							}
+              .aMixed {
+              @include color(blue);
+              }
 
-							.anotherMixed {
-							@include color(red);
-							}
-						</code></pre>
-	<p>outputs</p>
+              .anotherMixed {
+              @include color(red);
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							.aMixed {
-							color: blue; }
-							.anotherMixed {
-							color: red; }
-						</code></pre>
+              .aMixed {
+              color: blue; }
+              .anotherMixed {
+              color: red; }
+            </code></pre>
 </section>
 
-				<section>
-	<h2>Mixin Argument Defaults
-	</h2>
-						<pre><code data-trim contenteditable>
-							@mixin foo($width) {
-							width: $width;
-							}
-							@mixin bar($color: blue) {
-							color: $color;
-							}
+<section>
+  <h2>Mixin Argument Defaults
+  </h2>
+	<pre><code data-trim contenteditable>
+    @mixin foo($width) {
+    width: $width;
+    }
+    @mixin bar($color: blue) {
+    color: $color;
+    }
 
-							.aMixed {
-							@include foo;
-							@include bar;
-							}
-							.anotherMixed {
-							@include foo(200px);
-							@include bar(red);
-							}
-
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.aMixed {
-							color: blue; }
-							.anotherMixed {
-							width: 200px;
-							color: red; }
-						</code></pre>
+    .aMixed {
+    @include foo;
+    @include bar;
+    }
+    .anotherMixed {
+    @include foo(200px);
+    @include bar(red);
+    }
+  </code></pre>
+  <p>outputs</p>
+	<pre><code data-trim contenteditable>
+    .aMixed {
+    color: blue;
+    }
+    .anotherMixed {
+    width: 200px;
+    color: red;
+    }
+  </code></pre>
 </section>
 
-				<section>
-	<h2>Mixin Keyword Arguments</h2>
+<section>
+  <h2>Mixin Keyword Arguments</h2>
 						<pre><code data-trim contenteditable>
-							@mixin foo($width: 100px, $height: 100px, $color: blue) {
-							width: $width;
-							height: $height;
-							color: $color;
-							}
+              @mixin foo($width: 100px, $height: 100px, $color: blue) {
+              width: $width;
+              height: $height;
+              color: $color;
+              }
 
-							.foo {
-							@include foo($color: red);
-							}
-						</code></pre>
-	<p>outputs</p>
+              .foo {
+              @include foo($color: red);
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							.foo {
-							width: 100px;
-							height: 100px;
-							color: red;
-							}
-						</code></pre>
+              .foo {
+              width: 100px;
+              height: 100px;
+              color: red;
+              }
+            </code></pre>
 </section>
 
-				<section>
-	<h2>Passing Nested Content to Mixin</h2>
+<section>
+  <h2>Passing Nested Content to Mixin</h2>
 						<pre><code data-trim contenteditable>
-							@mixin apply-to-ie6-only {
-							* html {
-							@content;
-							}
-							}
-							@include apply-to-ie6-only {
-							#logo {
-							background-image: url(/logo.gif);
-							}
-							}
-						</code></pre>
-	<p>outputs</p>
+              @mixin apply-to-ie6-only {
+              * html {
+              @content;
+              }
+              }
+              @include apply-to-ie6-only {
+              #logo {
+              background-image: url(/logo.gif);
+              }
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							* html #logo {
-							background-image: url(/logo.gif);
-							}
-						</code></pre>
+              * html #logo {
+              background-image: url(/logo.gif);
+              }
+            </code></pre>
 </section>
 
-				<section>
-	<h2>Functions</h2>
-						<pre><code data-trim contenteditable>
-							@function double($number) {
-							@return $number * 2;
-							}
-
-							.foo {
-							width: double(100px);
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.foo {
-							width: 200px; }
-						</code></pre>
+<section>
+  <h2>Functions</h2>
+	<pre><code data-trim contenteditable>
+    @function double($number) {
+    @return $number * 2;
+    }
+    .foo {
+    width: double(100px);
+    }
+  </code></pre>
+  <p>outputs</p>
+	<pre><code data-trim contenteditable>
+    .foo {
+    width: 200px;
+    }
+  </code></pre>
 </section>
 
-				<section>
-	<h2>Number Operations</h2>
+<section>
+  <h2>Number Operations</h2>
 						<pre><code data-trim contenteditable>
-							p {
-							width: 1in + 8pt;
-							}
+              p {
+              width: 1in + 8pt;
+              }
 
-							p {
-							font: 10px/8px;
-							width: $width/2;
-							height: (500px/2);
-							margin-left: 5px + 8px/2px;
-							}
-						</code></pre>
-	<p>outputs</p>
+              p {
+              font: 10px/8px;
+              width: $width/2;
+              height: (500px/2);
+              margin-left: 5px + 8px/2px;
+              }
+            </code></pre>
+  <p>outputs</p>
 						<pre><code data-trim contenteditable>
-							p {
-							width: 1.111in; }
-							p {
-							font: 10px/8px;
-							width: 500px;
-							height: 250px;
-							margin-left: 9px; }
+              p {
+              width: 1.111in; }
+              p {
+              font: 10px/8px;
+              width: 500px;
+              height: 250px;
+              margin-left: 9px; }
 
-						</code></pre>
-	<br>
-	<p>Number Relational Operators: <strong>&lt;   &lt;=   &gt;=   &gt;</strong></p>
-	<p>Relational Operators for all types: <strong>==   !=</strong></p>
+            </code></pre>
+  <br>
+
+  <p>Number Relational Operators: <strong>&lt; &lt;= &gt;= &gt;</strong></p>
+
+  <p>Relational Operators for all types: <strong>== !=</strong></p>
 </section>
 
-				<section>
-	<h2>Color Operations</h2>
-						<pre><code data-trim contenteditable>
-							color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							color: #050709;
-						</code></pre>
-	<hr>
-						<pre><code data-trim contenteditable>
-							color: #010203 * 2
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							color: #020406;
-						</code></pre>
-	<hr>
-						<pre><code data-trim contenteditable>
-							color: rgba(255, 255, 0, 0.75);
-						</code></pre>
-	<hr>
-						<pre><code data-trim contenteditable>
-							$translucent-red: rgba(255, 0, 0, 0.5);
+<section>
+  <h2>Color Operations</h2>
 
-							color: opacify($translucent-red, 0.3);
-							background-color: transparentize($translucent-red, 0.25);
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							color: rgba(255, 0, 0, 0.9);
-							background-color: rgba(255, 0, 0, 0.25);
-						</code></pre>
-	<hr>
-						<pre><code data-trim contenteditable>
-							color: rgba(#f00, 0.8);
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							color: rgba(255,0,0,0.8);
-						</code></pre>
-	<hr>
-						<pre><code data-trim contenteditable>
-							ie-hex-str(green)
-						</code></pre>
-						<pre><code data-trim contenteditable>
-							#FF00FF00
-						</code></pre>
+  <div class="row">
+    <div class="col-2-3">
+<pre><code data-trim contenteditable>
+color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+</code></pre>
+    </div>
+    <div class="col-1-3">
+<pre><code data-trim contenteditable>
+color: #050709;
+</code></pre>
+      </div>
+  </div>
+  <hr>
+  <pre><code data-trim contenteditable>
+    color: #010203 * 2
+  </code></pre>
+  <pre><code data-trim contenteditable>
+    color: #020406;
+  </code></pre>
+  <hr>
+  <pre><code data-trim contenteditable>
+    color: rgba(255, 255, 0, 0.75);
+  </code></pre>
+  <hr>
+  <pre><code data-trim contenteditable>
+    $translucent-red: rgba(255, 0, 0, 0.5);
+
+    color: opacify($translucent-red, 0.3);
+    background-color: transparentize($translucent-red, 0.25);
+  </code></pre>
+  <pre><code data-trim contenteditable>
+    color: rgba(255, 0, 0, 0.9);
+    background-color: rgba(255, 0, 0, 0.25);
+  </code></pre>
+  <hr>
+  <pre><code data-trim contenteditable>
+    color: rgba(#f00, 0.8);
+  </code></pre>
+  <pre><code data-trim contenteditable>
+    color: rgba(255,0,0,0.8);
+  </code></pre>
+  <hr>
+  <pre><code data-trim contenteditable>
+    ie-hex-str(green)
+  </code></pre>
+  <pre><code data-trim contenteditable>
+    #FF00FF00
+  </code></pre>
+
+  <aside class="notes">
+    Control the output unit for these operations
+  </aside>
 </section>
 
-				<section>
-	<h2>Interpolation</h2>
-						<pre><code data-trim contenteditable>
-							$text-size: 13px;
-							$line-height: 1.3;
-							$selector: "body";
+<section>
+  <h2>Interpolation</h2>
+	<pre><code data-trim contenteditable>
+    $text-size: 13px;
+    $line-height: 1.3;
+    $selector: "body";
 
-							#{$selector} {
-							font: #{$text-size}/#{$line-height};
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							body {
-							font: 13px/1.3; }
-						</code></pre>
+    #{$selector} {
+    font: #{$text-size}/#{$line-height};
+    }
+  </code></pre>
+  <p>outputs</p>
+	<pre><code data-trim contenteditable>
+    body {
+    font: 13px/1.3;
+    }
+  </code></pre>
 </section>
 
-				<section>
-	<h2>Partials, @import, @include</h2>
-	<p>_text.scss</p>
-						<pre><code data-trim contenteditable>
-							p {
-							font-size: 1em;
-							}
-							h1 {
-							font-size: 2em;
-							}
+<section>
+  <h2>Partials, @import, @include</h2>
 
-							@mixin foo {
-							font-family: Helvetica;
-							}
-						</code></pre>
-	<p>common.scss</p>
+  <p>_text.scss</p>
 						<pre><code data-trim contenteditable>
-							@import "text";
+              p {
+              font-size: 1em;
+              }
+              h1 {
+              font-size: 2em;
+              }
 
-							body {
-							@include foo;
-							}
-						</code></pre>
-	<hr>
-	<p>common.css</p>
+              @mixin foo {
+              font-family: Helvetica;
+              }
+            </code></pre>
+  <p>common.scss</p>
 						<pre><code data-trim contenteditable>
-							p {
-							font-size: 1em; }
-							h1 {
-							font-size: 2em; }
-							body {
-							font-family: Helvetica; }
-						</code></pre>
+              @import "text";
+
+              body {
+              @include foo;
+              }
+            </code></pre>
+  <hr>
+  <p>common.css</p>
+						<pre><code data-trim contenteditable>
+              p {
+              font-size: 1em; }
+              h1 {
+              font-size: 2em; }
+              body {
+              font-family: Helvetica; }
+            </code></pre>
 </section>
 
-				<section>
-	<h2>@extend</h2>
-						<pre><code data-trim contenteditable>
-							.error {
-							border: 1px #f00;
-							}
-							.seriousError {
-							@extend .error;
-							border-width: 3px;
-							}
-							.criticalError {
-							@extend .seriousError;
-							background: #fdd;
-							}
-
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.error, .seriousError, .criticalError {
-							border: 1px #f00; }
-
-							.seriousError, .criticalError {
-							border-width: 3px; }
-
-							.criticalError {
-							background: #fdd; }
-						</code></pre>
+<section>
+  <h2>@extend</h2>
+	<pre><code data-trim contenteditable>
+    .error {
+    border: 1px #f00;
+    }
+    .seriousError {
+    @extend .error;
+    border-width: 3px;
+    }
+    .criticalError {
+    @extend .seriousError;
+    background: #fdd;
+    }
+  </code></pre>
+  <p>outputs</p>
+	<pre><code data-trim contenteditable>
+    .error, .seriousError, .criticalError {
+    border: 1px #f00;
+    }
+    .seriousError, .criticalError {
+    border-width: 3px;
+    }
+    .criticalError {
+    background: #fdd;
+    }
+  </code></pre>
 </section>
 
-				<section>
-	<h2>@if, @else if, @else</h2>
-						<pre><code data-trim contenteditable>
-							$fancy = 0;
+<section>
+  <h2>@if, @else if, @else</h2>
+	<pre><code data-trim contenteditable>
+    $fancy = 0;
 
-							.foo {
-							@if $fancy == 1 {
-							border-style: solid;
-							}
-							@else if $fancy == 2 {
-							border-style: dotted;
-							}
-							@else if $fancy == 3 {
-							border-style: double;
-							}
-							@else {
-							border-style: none;
-							}
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.foo {
-							border-style: #none; }
-						</code></pre>
+    .foo {
+    @if $fancy == 1 {
+    border-style: solid;
+    }
+    @else if $fancy == 2 {
+    border-style: dotted;
+    }
+    @else if $fancy == 3 {
+    border-style: double;
+    }
+    @else {
+    border-style: none;
+    }
+    }
+  </code></pre>
+  <p>outputs</p>
+	<pre><code data-trim contenteditable>
+    .foo {
+    border-style: #none;
+    }
+  </code></pre>
 </section>
 
-				<section>
-	<h2>@each</h2>
-						<pre><code data-trim contenteditable>
-							$buttons: 'facebook' 'twitter' 'linkedin' 'github';
+<section>
+  <h2>@each</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+$buttons: 'facebook' 'twitter' 'linkedin' 'github';
 
-							@each $button in $buttons {
-							.button-#{$button} {
-							background:
-							url("icons/#{$button}.png");
-							}
-							}
-						</code></pre>
-	<p>outputs</p>
-						<pre><code data-trim contenteditable>
-							.button-facebook {
-							background: url(icons/facebook.png); }
-							.button-twitter {
-							background: url(icons/twitter.png); }
-							.button-linkedin {
-							background: url(icons/linkedin.png); }
-							.button-github {
-							background: url(icons/github.png); }
-						</code></pre>
+@each $button in $buttons {
+  .button-#{$button} {
+    background: url("icons/#{$button}.png");
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+      <p>outputs</p>
+<pre><code class="css" data-trim>
+.button-facebook {
+  background: url(icons/facebook.png);
+}
+.button-twitter {
+  background: url(icons/twitter.png);
+}
+.button-linkedin {
+  background: url(icons/linkedin.png);
+}
+.button-github {
+  background: url(icons/github.png);
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
-			</section>
+</section>
 
 			<section data-markdown>
-	<script type="text/template">
-		##LESS
+  <script type="text/template">
+    ##LESS
 
-		- Client-side
-		- @variables
-		<pre><code data-trim contenteditable>
-			@fnord:  "I am fnord.";
-			@var:    "fnord";
-			content: @@var;
-		</code></pre>
-		<p>outputs:</p>
-		<pre><code data-trim contenteditable>
-			content: "I am fnord.";
-		</code></pre>
-		- mixins
-		<pre><code data-trim contenteditable>
-			.mixin {
-			color: red;
-			}
-			.widget {
-			.mixin;
-			}
-		</code></pre>
-	</script>
+    - Client-side
+    - @variables
+    <pre><code data-trim contenteditable>
+      @fnord: "I am fnord.";
+      @var: "fnord";
+      content: @@var;
+    </code></pre>
+    <p>outputs:</p>
+    <pre><code data-trim contenteditable>
+      content: "I am fnord.";
+    </code></pre>
+    - mixins
+    <pre><code data-trim contenteditable>
+      .mixin {
+      color: red;
+      }
+      .widget {
+      .mixin;
+      }
+    </code></pre>
+  </script>
 </section>
 
 
 			<section>
-	<h3>Additional Resources:</h3>
-	<p><a href="https://github.com/davidtheclark/scalable-css-reading-list">A Scalable CSS Reading List</a></p>
+  <h3>Additional Resources:</h3>
+
+  <p><a href="https://github.com/davidtheclark/scalable-css-reading-list">A Scalable CSS Reading List</a></p>
 </section>
 
 
