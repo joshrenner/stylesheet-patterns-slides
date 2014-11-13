@@ -1,7 +1,7 @@
 {
   "name": "stylesheet-patterns",
   "version": "1.0.0",
-  "description": "",
+  "description": "Stylesheet Design Patterns for Better CSS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,16 @@
   },
   "homepage": "https://github.com/press22day/stylesheet-patterns",
   "devDependencies": {
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-cssmin": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-sass": "~0.5.0",
+    "grunt-contrib-connect": "~0.4.1",
+    "grunt-zip": "~0.7.0",
+    "grunt": "~0.4.0",
+
     "gulp": "^3.8.10",
     "gulp-file-include": "^0.5.1"
   }

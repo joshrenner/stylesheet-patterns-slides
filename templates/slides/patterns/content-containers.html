@@ -1,0 +1,20 @@
+<section>
+	<h2>Separation of Containers and Content</h2>
+						<pre><code data-trim contenteditable>
+							// not this
+							.widget h3 {
+							font-size: 14px;
+							color: #333;
+							margin-top: 10px;
+							}
+
+							// better reuse
+							.widget {
+							padding-top: 10px;
+							}
+							h3 {
+							font-size: 14px;
+							color: #333;
+							}
+						</code></pre>
+</section>
