@@ -638,161 +638,191 @@ h3 {
 
 <section>
 <section>
-  <h1 class="main">Preprocessors?</h1>
-
-  <p><em>Why does anything need to change?</em></p>
-
-  <h2 class="fragment">It doesn't</h2>
-
-  <p class="fragment">
-    <strong>CSS is still CSS</strong><br>
-    <small>Supersets are inclusive. Architecture can be.</small>
-  </p>
-  <p class="fragment">
-    <strong>Layers impede before they payoff</strong><br>
-    <small>Skill sets and timelines may take precedence.</small>
-  </p>
-  <p class="fragment">
-    <strong>Scalability is not the only objective</strong>
-    <small>But scalability is not the only reason to choose a preprocessor...</small>
-  </p>
-</section>
-
-<section data-markdown>
-  <script type="text/template">
-    ##The styles need to scale
-    - Multiple applications with a common brand
-    - Application with multiple brands
-    - Complex visual states/views (catch all)
-  </script>
-</section>
-
-<section data-markdown>
-  <script type="text/template">
-    ##The styles are distributed
-    - Locations - <em>modularity</em>
-    - Time - <em>maintainability</em>
-    - Disciplines - <em>adoption</em>
-  </script>
-</section>
-
+  <h1 class="main">Preprocessors</h1>
 </section>
 
 <section>
-<section>
-  <h1>OK. Preprocessors.</h1>
-
-  What do they offer?
+  <div class="row">
+    <div class="col-1-2">
+      <h2>Cons</h2>
+      <p class="fragment">
+        <strong>CSS is still CSS</strong><br>
+        <small>Supersets are inclusive. Architecture can be.</small>
+      </p>
+      <p class="fragment">
+        <strong>Layers often impede before they payoff</strong><br>
+        <small>Skill sets and timelines may take precedence.</small>
+      </p>
+      <p class="fragment">
+        <strong>Scalability is not the main objective</strong>
+        <small>But scalability is not the only reason to choose a preprocessor...</small>
+      </p>
+    </div>
+    <div class="col-1-2">
+      <h2>Pros</h2>
+      <div class="fragment">
+        <p><strong>The styles need to scale</strong></p>
+        <ul style="list-style: none">
+          <li><small>Multiple applications with a common brand</small></li>
+          <li><small>Application with multiple brands</small></li>
+          <li><small>Complex visual states/views</small></li>
+        </ul>
+      </div>
+      <div class="fragment">
+        <p><strong>The styles are distributed</strong></p>
+        <ul style="list-style: none">
+          <li><small>Locations - <em>modularity</em></small></li>
+          <li><small>Time - <em>maintainability</em></small></li>
+          <li><small>Disciplines - <em>adoption</em></small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Nesting</h2>
-	<pre><code data-trim contenteditable>
-    .page {
-    width: 100%;
-    .widget {
+
+  <div class="row">
+    <div class="col-1-2">
+
+<pre><code class="scss" data-trim>
+.page {
+  width: 100%;
+  .widget {
     width: 50%;
     .button {
-    width: 200px;
+      width: 200px;
     }
-    }
-    }
-  </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              .page {
-              width: 100%; }
-              .page .widget {
-              width: 50%; }
-              .page .widget .button {
-              width: 200px; }
-
-            </code></pre>
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.page {
+  width: 100%;
+}
+.page .widget {
+  width: 50%;
+}
+.page .widget .button {
+  width: 200px;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
-						<pre><code data-trim contenteditable>
-              a {
-              color: gray;
-              &:hover {
-              color: black;
-              }
-              }
 
-              .block {
-              width: 100px;
-              .ie-6 & {
-              width: 102px;
-              }
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              a {
-              color: gray; }
-              a:hover {
-              color: black; }
+  <div class="row">
+    <div class="col-1-2">
 
-              .block {
-              width: 100px; }
-              .ie-6 .block {
-              width: 102px; }
-            </code></pre>
+<pre><code class="scss" data-trim>
+a {
+  color: gray;
+  &:hover {
+    color: black;
+  }
+}
+.block {
+  width: 100px;
+  .ie-6 & {
+    width: 102px;
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+a {
+  color: gray;
+}
+a:hover {
+  color: black;
+}
+.block {
+  width: 100px;
+}
+.ie-6 .block {
+  width: 102px;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>
 
 <section>
   <h2>Nested Media Queries</h2>
-						<pre><code data-trim contenteditable>
-              .screencolor{
-              @media screen {
-              color: green;
-              @media (min-width:768px) {
-              color: red;
-              }
-              }
-              @media tv {
-              color: black;
-              }
-              } </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              @media screen {
-              .screencolor {
-              color: green;
-              }
-              }
-              @media screen and (min-width: 768px) {
-              .screencolor {
-              color: red;
-              }
-              }
-              @media tv {
-              .screencolor {
-              color: black;
-              }
-              } </code></pre>
+  <div class="row">
+    <div class="col-1-2">
+
+<pre><code class="scss" data-trim>
+.screencolor {
+  @media screen {
+    color: green;
+    @media (min-width:768px) {
+      color: red;
+    }
+  }
+  @media tv {
+    color: black;
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+@media screen {
+  .screencolor {
+    color: green;
+  }
+}
+@media screen and (min-width: 768px) {
+  .screencolor {
+    color: red;
+  }
+}
+@media tv {
+  .screencolor {
+    color: black;
+  }
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Variables</h2>
-						<pre><code data-trim contenteditable>
-              $width: 200px;
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+$width: 200px;
 
-              .widget1 {
-              width: $width;
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              .widget1 {
-              width: 200px; }
-            </code></pre>
+.widget1 {
+  width: $width;
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.widget1 {
+  width: 200px;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2><em>!default</em> flag</h2>
-<pre><code data-trim>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
 $height: auto !default;
 
 .widget1 {
@@ -803,8 +833,9 @@ $height: auto !default;
   height: $height;
 }
 </code></pre>
-<p>outputs</p>
-<pre><code data-trim>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
 .widget1 {
   height: auto;
 }
@@ -812,15 +843,47 @@ $height: auto !default;
   height: 100px;
 }
 </code></pre>
+    </div>
+  </div>
+
+</section>
+
+<section>
+  <h2><em>!global</em> flag</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+#main {
+  $width: 5em !global;
+  width: $width;
+}
+
+#sidebar {
+  width: $width;
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+#main {
+  width: 5em;
+}
+
+#sidebar {
+  width: 5em;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>
 
 <section>
   <h2>Mixins</h2>
-
   <p>Mixins allow you to define styles that can be reused throughout the stylesheet.</p>
-
-
-<pre><code data-trim>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
 @mixin color {
   color: blue;
 }
@@ -835,12 +898,9 @@ $height: auto !default;
   width: 100px;
 }
 </code></pre>
-
-
-  <p>outputs</p>
-
-
-<pre><code data-trim contenteditable>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
 .aMixed {
   color: blue;
   width: 200px;
@@ -850,154 +910,189 @@ $height: auto !default;
   width: 100px;
 }
 </code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>Mixin Arguments
-  </h2>
-						<pre><code data-trim contenteditable>
-              @mixin color($color) {
-              color: $color;
-              }
+  <h2>Mixin Arguments</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+@mixin color($color) {
+  color: $color;
+}
 
-              .aMixed {
-              @include color(blue);
-              }
+.aMixed {
+  @include color(blue);
+}
 
-              .anotherMixed {
-              @include color(red);
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              .aMixed {
-              color: blue; }
-              .anotherMixed {
-              color: red; }
-            </code></pre>
+.anotherMixed {
+  @include color(red);
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.aMixed {
+  color: blue;
+}
+.anotherMixed {
+  color: red;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>Mixin Argument Defaults
-  </h2>
-	<pre><code data-trim contenteditable>
-    @mixin foo($width) {
-    width: $width;
-    }
-    @mixin bar($color: blue) {
-    color: $color;
-    }
+  <h2>Mixin Argument Defaults</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+@mixin foo($width) {
+  width: $width;
+}
+@mixin bar($color: blue) {
+  color: $color;
+}
 
-    .aMixed {
-    @include foo;
-    @include bar;
-    }
-    .anotherMixed {
-    @include foo(200px);
-    @include bar(red);
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    .aMixed {
-    color: blue;
-    }
-    .anotherMixed {
-    width: 200px;
-    color: red;
-    }
-  </code></pre>
+.aMixed {
+  @include foo;
+  @include bar;
+}
+.anotherMixed {
+  @include foo(200px);
+  @include bar(red);
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.aMixed {
+  color: blue;
+}
+.anotherMixed {
+  width: 200px;
+  color: red;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>
 
 <section>
   <h2>Mixin Keyword Arguments</h2>
-						<pre><code data-trim contenteditable>
-              @mixin foo($width: 100px, $height: 100px, $color: blue) {
-              width: $width;
-              height: $height;
-              color: $color;
-              }
+  <div class="row">
+    <div class="col-2-3">
+<pre><code class="scss" data-trim>
+@mixin foo($width: 100px, $height: 100px, $color: blue) {
+  width: $width;
+  height: $height;
+  color: $color;
+}
 
-              .foo {
-              @include foo($color: red);
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              .foo {
-              width: 100px;
-              height: 100px;
-              color: red;
-              }
-            </code></pre>
+.foo {
+  @include foo($color: red);
+}
+</code></pre>
+    </div>
+    <div class="col-1-3">
+<pre><code class="css" data-trim>
+.foo {
+  width: 100px;
+  height: 100px;
+  color: red;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>
 
 <section>
   <h2>Passing Nested Content to Mixin</h2>
-						<pre><code data-trim contenteditable>
-              @mixin apply-to-ie6-only {
-              * html {
-              @content;
-              }
-              }
-              @include apply-to-ie6-only {
-              #logo {
-              background-image: url(/logo.gif);
-              }
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              * html #logo {
-              background-image: url(/logo.gif);
-              }
-            </code></pre>
+  <div class="row">
+    <div class="col-2-3">
+<pre><code class="scss" data-trim>
+@mixin apply-to-ie6-only {
+  * html {
+    @content;
+  }
+}
+
+@include apply-to-ie6-only {
+  #logo {
+    background-image: url(/logo.gif);
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-3">
+<pre><code class="css" data-trim>
+* html #logo {
+  background-image: url(/logo.gif);
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Functions</h2>
-	<pre><code data-trim contenteditable>
-    @function double($number) {
-    @return $number * 2;
-    }
-    .foo {
-    width: double(100px);
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    .foo {
-    width: 200px;
-    }
-  </code></pre>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+@function double($number) {
+  @return $number * 2;
+}
+
+.foo {
+  width: double(100px);
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.foo {
+  width: 200px;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Number Operations</h2>
-						<pre><code data-trim contenteditable>
-              p {
-              width: 1in + 8pt;
-              }
-
-              p {
-              font: 10px/8px;
-              width: $width/2;
-              height: (500px/2);
-              margin-left: 5px + 8px/2px;
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              p {
-              width: 1.111in; }
-              p {
-              font: 10px/8px;
-              width: 500px;
-              height: 250px;
-              margin-left: 9px; }
-
-            </code></pre>
-  <br>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+p {
+  width: 1in + 8pt;
+}
+p {
+  font: 10px/8px;
+  width: $width/2;
+  height: (500px/2);
+  margin-left: 5px + 8px/2px;
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+p {
+  width: 1.111in;
+}
+p {
+  font: 10px/8px;
+  width: 500px;
+  height: 250px;
+  margin-left: 9px;
+}
+</code></pre>
+    </div>
+  </div>
 
   <p>Number Relational Operators: <strong>&lt; &lt;= &gt;= &gt;</strong></p>
 
@@ -1008,175 +1103,209 @@ $height: auto !default;
   <h2>Color Operations</h2>
 
   <div class="row">
-    <div class="col-2-3">
-<pre><code data-trim contenteditable>
-color: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+color: #010203 * 2
 </code></pre>
     </div>
-    <div class="col-1-3">
-<pre><code data-trim contenteditable>
-color: #050709;
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+color: #020406;
 </code></pre>
-      </div>
+    </div>
   </div>
   <hr>
-  <pre><code data-trim contenteditable>
-    color: #010203 * 2
-  </code></pre>
-  <pre><code data-trim contenteditable>
-    color: #020406;
-  </code></pre>
-  <hr>
-  <pre><code data-trim contenteditable>
-    color: rgba(255, 255, 0, 0.75);
-  </code></pre>
-  <hr>
-  <pre><code data-trim contenteditable>
-    $translucent-red: rgba(255, 0, 0, 0.5);
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+$translucent-red: rgba(255, 0, 0, 0.5);
 
-    color: opacify($translucent-red, 0.3);
-    background-color: transparentize($translucent-red, 0.25);
-  </code></pre>
-  <pre><code data-trim contenteditable>
-    color: rgba(255, 0, 0, 0.9);
-    background-color: rgba(255, 0, 0, 0.25);
-  </code></pre>
+color: opacify($translucent-red, 0.3);
+background-color: transparentize($translucent-red, 0.25);
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+color: rgba(255, 0, 0, 0.9);
+background-color: rgba(255, 0, 0, 0.25);
+</code></pre>
+    </div>
+  </div>
   <hr>
-  <pre><code data-trim contenteditable>
-    color: rgba(#f00, 0.8);
-  </code></pre>
-  <pre><code data-trim contenteditable>
-    color: rgba(255,0,0,0.8);
-  </code></pre>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+color: rgba(#f00, 0.8);
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+color: rgba(255,0,0,0.8);
+</code></pre>
+    </div>
+  </div>
   <hr>
-  <pre><code data-trim contenteditable>
-    ie-hex-str(green)
-  </code></pre>
-  <pre><code data-trim contenteditable>
-    #FF00FF00
-  </code></pre>
-
-  <aside class="notes">
-    Control the output unit for these operations
-  </aside>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+ie-hex-str(green)
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+#FF00FF00
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Interpolation</h2>
-	<pre><code data-trim contenteditable>
-    $text-size: 13px;
-    $line-height: 1.3;
-    $selector: "body";
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+$text-size: 13px;
+$line-height: 1.3;
+$selector: "body";
 
-    #{$selector} {
-    font: #{$text-size}/#{$line-height};
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    body {
-    font: 13px/1.3;
-    }
-  </code></pre>
+#{$selector} {
+  font: #{$text-size}/#{$line-height};
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+body {
+  font: 13px/1.3;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Partials, @import, @include</h2>
+  <div class="row">
+    <div class="col-2-3">
+      <p>_text.scss</p>
+<pre><code class="scss" data-trim>
+p {
+  font-size: 1em;
+}
+h1 {
+  font-size: 2em;
+}
 
-  <p>_text.scss</p>
-						<pre><code data-trim contenteditable>
-              p {
-              font-size: 1em;
-              }
-              h1 {
-              font-size: 2em;
-              }
+@mixin foo {
+  font-family: Helvetica;
+}
+</code></pre>
+      <p>common.scss</p>
+<pre><code class="scss" data-trim>
+@import "text";
 
-              @mixin foo {
-              font-family: Helvetica;
-              }
-            </code></pre>
-  <p>common.scss</p>
-						<pre><code data-trim contenteditable>
-              @import "text";
-
-              body {
-              @include foo;
-              }
-            </code></pre>
-  <hr>
-  <p>common.css</p>
-						<pre><code data-trim contenteditable>
-              p {
-              font-size: 1em; }
-              h1 {
-              font-size: 2em; }
-              body {
-              font-family: Helvetica; }
-            </code></pre>
+body {
+  @include foo;
+}
+</code></pre>
+    </div>
+    <div class="col-1-3">
+      <p>common.css</p>
+<pre><code class="css" data-trim>
+p {
+  font-size: 1em;
+}
+h1 {
+  font-size: 2em;
+}
+body {
+  font-family: Helvetica;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>@extend</h2>
-	<pre><code data-trim contenteditable>
-    .error {
-    border: 1px #f00;
-    }
-    .seriousError {
-    @extend .error;
-    border-width: 3px;
-    }
-    .criticalError {
-    @extend .seriousError;
-    background: #fdd;
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    .error, .seriousError, .criticalError {
-    border: 1px #f00;
-    }
-    .seriousError, .criticalError {
-    border-width: 3px;
-    }
-    .criticalError {
-    background: #fdd;
-    }
-  </code></pre>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+%block {
+  display: block;
+  box-sizing: border-box;
+}
+
+.error {
+  @extend %block;
+  border: 1px #f00;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+.criticalError {
+  @extend .seriousError;
+  background: #fdd;
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.error,
+.seriousError,
+.criticalError {
+  display: block;
+  box-sizing: border-box;
+  border: 1px #f00;
+}
+.seriousError,
+.criticalError {
+  border-width: 3px;
+}
+.criticalError {
+  background: #fdd;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>@if, @else if, @else</h2>
-	<pre><code data-trim contenteditable>
-    $fancy = 0;
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+$fancy = 0;
 
-    .foo {
-    @if $fancy == 1 {
+.foo {
+  @if $fancy == 1 {
     border-style: solid;
-    }
-    @else if $fancy == 2 {
+  }
+  @else if $fancy == 2 {
     border-style: dotted;
-    }
-    @else if $fancy == 3 {
+  }
+  @else if $fancy == 3 {
     border-style: double;
-    }
-    @else {
+  }
+  @else {
     border-style: none;
-    }
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    .foo {
-    border-style: #none;
-    }
-  </code></pre>
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.foo {
+  border-style: #none;
+}
+</code></pre>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>@each</h2>
-  <div class="row">
-    <div class="col-1-2">
 <pre><code class="scss" data-trim>
 $buttons: 'facebook' 'twitter' 'linkedin' 'github';
 
@@ -1186,9 +1315,6 @@ $buttons: 'facebook' 'twitter' 'linkedin' 'github';
   }
 }
 </code></pre>
-    </div>
-    <div class="col-1-2">
-      <p>outputs</p>
 <pre><code class="css" data-trim>
 .button-facebook {
   background: url(icons/facebook.png);
@@ -1203,10 +1329,27 @@ $buttons: 'facebook' 'twitter' 'linkedin' 'github';
   background: url(icons/github.png);
 }
 </code></pre>
-    </div>
-  </div>
 </section>
 
+<section>
+  <h2>SASS <small>vs</small> SCSS syntax</h2>
+<pre><code class="scss">
+@import "base"
+
+=mixin ($arg: "default")
+  &:before
+    content: $arg
+
+.widget
+  +mixin("chippewa")
+  border: solid blue thin
+
+.title
+  font-size: 2em
+  @extend .headlines
+
+</code></pre>
+</section>
 </section>
 
 

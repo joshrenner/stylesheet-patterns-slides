@@ -1,24 +1,30 @@
 <section>
-  <h2>Mixin Arguments
-  </h2>
-						<pre><code data-trim contenteditable>
-              @mixin color($color) {
-              color: $color;
-              }
+  <h2>Mixin Arguments</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+@mixin color($color) {
+  color: $color;
+}
 
-              .aMixed {
-              @include color(blue);
-              }
+.aMixed {
+  @include color(blue);
+}
 
-              .anotherMixed {
-              @include color(red);
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              .aMixed {
-              color: blue; }
-              .anotherMixed {
-              color: red; }
-            </code></pre>
+.anotherMixed {
+  @include color(red);
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.aMixed {
+  color: blue;
+}
+.anotherMixed {
+  color: red;
+}
+</code></pre>
+    </div>
+  </div>
 </section>

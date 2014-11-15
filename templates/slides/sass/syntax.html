@@ -1,0 +1,19 @@
+<section>
+  <h2>SASS <small>vs</small> SCSS syntax</h2>
+<pre><code class="scss">
+@import "base"
+
+=mixin ($arg: "default")
+  &:before
+    content: $arg
+
+.widget
+  +mixin("chippewa")
+  border: solid blue thin
+
+.title
+  font-size: 2em
+  @extend .headlines
+
+</code></pre>
+</section>

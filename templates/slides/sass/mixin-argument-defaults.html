@@ -1,31 +1,36 @@
 <section>
-  <h2>Mixin Argument Defaults
-  </h2>
-	<pre><code data-trim contenteditable>
-    @mixin foo($width) {
-    width: $width;
-    }
-    @mixin bar($color: blue) {
-    color: $color;
-    }
+  <h2>Mixin Argument Defaults</h2>
+  <div class="row">
+    <div class="col-1-2">
+<pre><code class="scss" data-trim>
+@mixin foo($width) {
+  width: $width;
+}
+@mixin bar($color: blue) {
+  color: $color;
+}
 
-    .aMixed {
-    @include foo;
-    @include bar;
-    }
-    .anotherMixed {
-    @include foo(200px);
-    @include bar(red);
-    }
-  </code></pre>
-  <p>outputs</p>
-	<pre><code data-trim contenteditable>
-    .aMixed {
-    color: blue;
-    }
-    .anotherMixed {
-    width: 200px;
-    color: red;
-    }
-  </code></pre>
+.aMixed {
+  @include foo;
+  @include bar;
+}
+.anotherMixed {
+  @include foo(200px);
+  @include bar(red);
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+.aMixed {
+  color: blue;
+}
+.anotherMixed {
+  width: 200px;
+  color: red;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>

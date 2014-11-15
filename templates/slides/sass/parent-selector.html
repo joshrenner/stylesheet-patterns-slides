@@ -1,30 +1,40 @@
 <section>
   <h2>Referencing the Parent Selector: <strong>&amp;</strong></h2>
-						<pre><code data-trim contenteditable>
-              a {
-              color: gray;
-              &:hover {
-              color: black;
-              }
-              }
 
-              .block {
-              width: 100px;
-              .ie-6 & {
-              width: 102px;
-              }
-              }
-            </code></pre>
-  <p>outputs</p>
-						<pre><code data-trim contenteditable>
-              a {
-              color: gray; }
-              a:hover {
-              color: black; }
+  <div class="row">
+    <div class="col-1-2">
 
-              .block {
-              width: 100px; }
-              .ie-6 .block {
-              width: 102px; }
-            </code></pre>
+<pre><code class="scss" data-trim>
+a {
+  color: gray;
+  &:hover {
+    color: black;
+  }
+}
+.block {
+  width: 100px;
+  .ie-6 & {
+    width: 102px;
+  }
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+a {
+  color: gray;
+}
+a:hover {
+  color: black;
+}
+.block {
+  width: 100px;
+}
+.ie-6 .block {
+  width: 102px;
+}
+</code></pre>
+    </div>
+  </div>
+
 </section>
