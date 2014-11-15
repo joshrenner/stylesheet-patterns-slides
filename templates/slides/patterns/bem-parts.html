@@ -2,21 +2,36 @@
   <div class="row">
     <div class="col-1-3">
       <h2>Block</h2>
-
-      <p></p>
-      <pre><code></code></pre>
+<pre><code class="css" data-trim>
+.block {}
+.site-search {}
+</code></pre>
+      <p>Highest level of an abstraction or component.</p>
     </div>
-    <div class="col-1-3">
+    <div class="col-1-3 fragment">
       <h2>Element</h2>
-
-      <p></p>
-      <pre><code></code></pre>
+<pre><code class="css" data-trim>
+.block__element {}
+.site-search__field {}
+</code></pre>
+      <p>Descendant of a block that forms the block as a whole.</p>
     </div>
-    <div class="col-1-3">
+    <div class="col-1-3 fragment">
       <h2>Modifier</h2>
-
-      <p></p>
-      <pre><code></code></pre>
+<pre><code class="css" data-trim>
+.block--modifier {}
+.site-search--full {}
+</code></pre>
+      <p>Different state or version of a block.</p>
     </div>
   </div>
+
+  <aside class="notes">
+    <p>The point of BEM is to tell other developers more about what a piece of markup is doing from its name alone. By reading some HTML with some classes in, you can see how – if at all – the chunks are related</p>
+
+    <ul hidden>
+      <li>http://bem.info/</li>
+      <li>http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/</li>
+    </ul>
+  </aside>
 </section>
