@@ -15,7 +15,7 @@
 
 	<link rel="stylesheet" href="css/grid.css">
 	<link rel="stylesheet" href="css/reveal.min.css">
-	<link rel="stylesheet" href="css/theme/default.css" id="theme">
+	<link rel="stylesheet" href="css/theme/beige.css" id="theme">
 
 	<!-- For syntax highlighting -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -216,31 +216,32 @@
 
 			</section>
 
-			<section>
-				<section data-markdown>
+<section>
+<section data-markdown>
   <script type="text/template">
     #Patterns
   </script>
 </section>
 
-				<section>
-  <h2>Single Responsibility Principle</h2>
+<section>
+  <h2>OOCSS</h2>
+  <p>Classes that make use of the single responsibility principle.</p>
 
-  <p><em>A class for every purpose</em></p>
-  <br>
-						<pre><code data-trim contenteditable>
-              <div class="block promoted user clearfix header">
-                <h4 class="headline promoted name">Blake Blakerson</h4>
-
-                <p class="description text promoted">Abdid blaisden floyancy</p>
-              </div>
-            </code></pre>
-  <br>
+<pre><code data-trim contenteditable>
+<div class="block promoted user clearfix header">
+  <h4 class="headline promoted name">Blake Blakerson</h4>
+  <p class="description text promoted">Abdid blaisden floyancy</p>
+</div>
+</code></pre>
 
   <p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
+
+  <aside>
+    <p>Classes define a single responsibility, and that responsibility should be entirely encapsulated by the context. All its services should be narrowly aligned with that responsibility</p>
+  </aside>
 </section>
 
-				<section>
+<section>
   <h2>Module Scoping</h2>
 	<pre><code data-trim contenteditable>
     .widget {
@@ -258,7 +259,7 @@
   </code></pre>
 </section>
 
-				<section>
+<section>
   <h2>BEM</h2>
 
   <h3>Block Element Modifier</h3>
@@ -287,7 +288,7 @@
             </code></pre>
 </section>
 
-				<section>
+<section>
   <h2>Separation of Structure From Skin</h2>
   <br>
 						<pre><code data-trim contenteditable>
@@ -315,7 +316,7 @@
             </code></pre>
 </section>
 
-				<section>
+<section>
   <h2>Separation of Containers and Content</h2>
 						<pre><code data-trim contenteditable>
               // not this
@@ -336,7 +337,70 @@
             </code></pre>
 </section>
 
-			</section>
+<section>
+  <header>
+    <h1>Attribute Modules</h1>
+    <h3>Moving beyond class-based styling</h3>
+  </header>
+
+  <blockquote cite="http://glenmaddern.com/articles/introducing-am-css">
+    <p>This one attribute holds everything, from enormous BEM-style names [...] to utilities [...], to JavaScript hooks [...], and so we spend a lot of time coming up with names that don't conflict with any others but are still vaguely readable.</p>
+    <footer>
+      <p><a href="http://glenmaddern.com/articles/introducing-am-css">Glen Maddern</a></p>
+    </footer>
+  </blockquote>
+
+
+</section>
+<section>
+  <h1>attribute~="value"</h1>
+  <h2>Space-separated Attribute Selector</h2>
+<pre><code data-trim>
+.chippewa { /* styles */ }
+[class~="chippewa"] { /* styles */ }
+</code></pre>
+
+
+  <div class="fragment row">
+    <div class="col-1-2">
+<pre><code class="language-markup">
+&lt;div am-Row&gt;
+  &lt;div am-Column&gt;Full&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div am-Row&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+[am-Row] {
+  /* max-width, clearfixes */
+}
+[am-Column] {
+  /* 100% width, floated */
+}
+[am-Column~="1/12"] { /* 1/12th width */ }
+[am-Column~="1/6"] { /* 1/6th width */ }
+[am-Column~="1/4"] { /* 1/4th width */ }
+[am-Column~="1/3"] { /* 1/3rd width */ }
+[am-Column~="5/12"] { /* 5/12ths width */ }
+</code></pre>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p>Matching space separated attribute values since IE7. Works in the same way class selectors do, but with any attribute.</p>
+    <p>Attribute Modules, or AM, at its core is about defining namespaces for your styles to live in. </p>
+    <p>The presence of an attribute, e.g. am-Button, can and should be styled. The particular values of each attribute then alter and adapt these base styles.</p>
+  </aside>
+
+</section>
+</section>
 
 			<section>
 				<section>

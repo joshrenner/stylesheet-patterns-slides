@@ -1,0 +1,48 @@
+<section>
+  <h1>attribute~="value"</h1>
+  <h2>Space-separated Attribute Selector</h2>
+<pre><code data-trim>
+.chippewa { /* styles */ }
+[class~="chippewa"] { /* styles */ }
+</code></pre>
+
+
+  <div class="fragment row">
+    <div class="col-1-2">
+<pre><code class="language-markup">
+&lt;div am-Row&gt;
+  &lt;div am-Column&gt;Full&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div am-Row&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+  &lt;div am-Column="1/3"&gt;Thirds&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+    </div>
+    <div class="col-1-2">
+<pre><code class="css" data-trim>
+[am-Row] {
+  /* max-width, clearfixes */
+}
+[am-Column] {
+  /* 100% width, floated */
+}
+[am-Column~="1/12"] { /* 1/12th width */ }
+[am-Column~="1/6"] { /* 1/6th width */ }
+[am-Column~="1/4"] { /* 1/4th width */ }
+[am-Column~="1/3"] { /* 1/3rd width */ }
+[am-Column~="5/12"] { /* 5/12ths width */ }
+</code></pre>
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p>Matching space separated attribute values since IE7. Works in the same way class selectors do, but with any attribute.</p>
+    <p>Attribute Modules, or AM, at its core is about defining namespaces for your styles to live in. </p>
+    <p>The presence of an attribute, e.g. am-Button, can and should be styled. The particular values of each attribute then alter and adapt these base styles.</p>
+  </aside>
+
+</section>

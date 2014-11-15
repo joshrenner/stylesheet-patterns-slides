@@ -1,27 +1,33 @@
 <section>
   <h2>Separation of Structure From Skin</h2>
-  <br>
-						<pre><code data-trim contenteditable>
-              .button {
-              width: 200px;
-              height: 50px;
-              }
 
-              .box {
-              width: 400px;
-              overflow: hidden;
-              }
 
-              .widget {
-              width: 500px;
-              min-height: 200px;
-              overflow: auto;
-              }
+<pre><code class="xml" data-trim>
+<div class="widget skin">
+  <input type="text">
+  <button>save</button>
+</div>
+</code></pre>
 
-              .skin {
-              border: solid 1px #ccc;
-              background: linear-gradient(#ccc, #222);
-              box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
-              }
-            </code></pre>
+
+<pre><code class="scss" data-trim>
+.widget {
+  width: 500px;
+  min-height: 200px;
+  overflow: auto;
+  input,
+  button {
+    display: inline-block;
+    width: 10%;
+  }
+  input {
+    width: 90%;
+  }
+}
+.skin {
+  border: solid 1px #ccc;
+  background: linear-gradient(#ccc, #222);
+  box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
+}
+</code></pre>
 </section>
