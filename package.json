@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/press22day/stylesheet-patterns.git"
+    "url": "https://github.com/press22day/stylesheet-patterns-slides.git"
   },
   "engines": {
     "node": "~0.10.0"

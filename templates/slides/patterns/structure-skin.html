@@ -1,33 +1,66 @@
 <section>
   <h2>Separation of Structure From Skin</h2>
 
+  <div class="row">
+    <div class="col-1">
 
 <pre><code class="xml" data-trim>
-<div class="widget skin">
-  <input type="text">
-  <button>save</button>
+<div class="widget-1 light">
+  <button class="button bright">push me</button>
+</div>
+<div class="widget-2 bright">
+  <button class="button">push me</button>
 </div>
 </code></pre>
 
+    </div>
+  </div>
 
-<pre><code class="scss" data-trim>
-.widget {
+
+  <div class="row">
+    <div class="col-1-2">
+      <h5>Structure</h5>
+<pre><code class="css" data-trim>
+.button {
+  height: 50px;
+}
+.widget-1 {
   width: 500px;
   min-height: 200px;
   overflow: auto;
-  input,
-  button {
-    display: inline-block;
-    width: 10%;
-  }
-  input {
+  .button {
     width: 90%;
+    margin: 0 auto;
   }
 }
-.skin {
+.widget-2 {
+  width: 50%;
+}
+</code></pre>
+
+    </div>
+    <div class="col-1-2">
+      <h5>Skin</h5>
+<pre><code class="css" data-trim>
+.light {
   border: solid 1px #ccc;
   background: linear-gradient(#ccc, #222);
   box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
 }
+.bright {
+  background: #00f;
+  color: #eef;
+}
+.button.bright {
+  border: 1px solid #009;
+}
 </code></pre>
+
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p>With OOCSS, we’re encouraged to give more forethought to what is common among different elements, then separate those common features into modules, or objects, that can be reused anywhere.</p>
+    <p>Separating structure and skin can also mean using classes to name your objects and their components, rather than relying solely on the semantics of HTML.</p>
+  </aside>
 </section>

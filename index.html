@@ -68,12 +68,10 @@
 			</section>
 
 			<section>
-  <section data-markdown>
-    <script type="text/template">
-      #Efficient Selectors
+  <section>
+    <h1 class="main">Efficient Selectors</h1>
 
-      Some guidelines to keep in mind when crafting your selectors
-    </script>
+    <p>Some guidelines to keep in mind when crafting your selectors</p>
   </section>
   <section>
     <p>CSS gets evaluated from right to left.</p>
@@ -117,7 +115,7 @@
 </section>
 
 			<section>
-  <h1>Media Queries</h1>
+  <h1 class="main">Media Queries</h1>
 
   <aside class="notes">
     Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker
@@ -127,9 +125,7 @@
 
 			<section>
 				<section data-markdown>
-  <script type="text/template">
-    #Anti-Patterns
-  </script>
+  <h1 class="main">Anti-Patterns</h1>
 </section>
 
 				<section>
@@ -217,27 +213,197 @@
 			</section>
 
 <section>
-<section data-markdown>
-  <script type="text/template">
-    #Patterns
-  </script>
+<section>
+  <h1 class="main">Patterns</h1>
+</section>
+
+
+<section>
+  <h1>OOCSS</h1>
+
+  <blockquote cite="https://github.com/stubbornella/oocss/wiki">
+    <p>Basically, a CSS “object” is a repeating visual pattern, that can be abstracted into an independent snippet of HTML, CSS, and possibly JavaScript. That object can then be reused throughout a site.</p>
+    <footer>
+      <p><a href="https://github.com/stubbornella/oocss/wiki">Nicole Sullivan</a></p>
+    </footer>
+  </blockquote>
+
+
+  <aside class="notes">
+    <ul hidden>
+      <li>https://github.com/stubbornella/oocss/wiki</li>
+      <li>http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/</li>
+    </ul>
+  </aside>
 </section>
 
 <section>
-  <h2>OOCSS</h2>
-  <p>Classes that make use of the single responsibility principle.</p>
+  <h2>Separation of Structure From Skin</h2>
 
-<pre><code data-trim contenteditable>
-<div class="block promoted user clearfix header">
-  <h4 class="headline promoted name">Blake Blakerson</h4>
-  <p class="description text promoted">Abdid blaisden floyancy</p>
+  <div class="row">
+    <div class="col-1">
+
+<pre><code class="xml" data-trim>
+<div class="widget-1 light">
+  <button class="button bright">push me</button>
+</div>
+<div class="widget-2 bright">
+  <button class="button">push me</button>
 </div>
 </code></pre>
 
-  <p class="fragment">A multitude of classes. Can you be sure of the consequences of altering those styles?</p>
+    </div>
+  </div>
 
-  <aside>
-    <p>Classes define a single responsibility, and that responsibility should be entirely encapsulated by the context. All its services should be narrowly aligned with that responsibility</p>
+
+  <div class="row">
+    <div class="col-1-2">
+      <h5>Structure</h5>
+<pre><code class="css" data-trim>
+.button {
+  height: 50px;
+}
+.widget-1 {
+  width: 500px;
+  min-height: 200px;
+  overflow: auto;
+  .button {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+.widget-2 {
+  width: 50%;
+}
+</code></pre>
+
+    </div>
+    <div class="col-1-2">
+      <h5>Skin</h5>
+<pre><code class="css" data-trim>
+.light {
+  border: solid 1px #ccc;
+  background: linear-gradient(#ccc, #222);
+  box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
+}
+.bright {
+  background: #00f;
+  color: #eef;
+}
+.button.bright {
+  border: 1px solid #009;
+}
+</code></pre>
+
+    </div>
+  </div>
+
+  <aside class="notes">
+    <p>With OOCSS, we’re encouraged to give more forethought to what is common among different elements, then separate those common features into modules, or objects, that can be reused anywhere.</p>
+    <p>Separating structure and skin can also mean using classes to name your objects and their components, rather than relying solely on the semantics of HTML.</p>
+  </aside>
+</section>
+
+<section>
+  <h2>Separation of Containers and Content</h2>
+						<pre><code data-trim contenteditable>
+              // not this
+              .widget h3 {
+              font-size: 14px;
+              color: #333;
+              margin-top: 10px;
+              }
+
+              // better reuse
+              .widget {
+              padding-top: 10px;
+              }
+              h3 {
+              font-size: 14px;
+              color: #333;
+              }
+            </code></pre>
+</section>
+
+
+<section>
+  <h1>Single Responsibility Principle</h1>
+
+  <blockquote cite="http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/">
+    <p>Loosely, the single responsibility principle states that every module or chunk of code (a function etc) should do one job well and one job only. The benefits of this are mainly in the way of maintainability and extensibility.</p>
+    <footer>
+      <p><a href="http://csswizardry.com/2012/04/the-single-responsibility-principle-applied-to-css/">Harry Roberts</a></p>
+    </footer>
+  </blockquote>
+
+
+  <aside class="notes">
+    <p>Loosely, the single responsibility principle states that every module or chunk of code (a function etc) should do one job well and one job only. The benefits of this are mainly in the way of maintainability and extensibility.</p>
+    <p>it makes code too specific in its job to be portable and reusable</p>
+    <p>Abstracting chunks of functionality into several responsibilities means we can reuse a lot more of our code and recombine it over and over</p>
+    <p>A class of .wrapper is a good example of the SRP at play</p>
+
+    <ul hidden>
+      <li>https://github.com/stubbornella/oocss/wiki</li>
+      <li>http://www.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/</li>
+    </ul>
+  </aside>
+</section>
+
+<section data-background="img/blocks.jpg">
+  <div class="row">
+    <div class="col-2-3">
+<pre><code class="xml">
+<div class="island content">
+  <h2>
+    <span>Buy now with promo code </span>
+    <strong class="promo">0MG4WE50ME</strong>
+  </h2>
+</div>
+
+<div class="island  sub-content">
+  <a class="island promo">Buy now!</a>
+</div>
+
+</code></pre>
+
+    </div>
+    <div class="col-1-3">
+<pre><code class="css" data-trim>
+.island {
+  display: block;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.promo {
+  background-color: #09f;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0,0,0,0.25);
+  border-radius: 4px;
+}
+.content {
+  width: 640px;
+  float: left;
+  margin-right: 20px;
+}
+.sub-content {
+  width: 280px;
+  float: left;
+}
+</code></pre>
+
+    </div>
+  </div>
+
+
+  <aside class="notes">
+    <ul>
+      <li>DRY</li>
+      <li>you can make far-reaching changes to your designs by simply modifying a base abstraction only once.</li>
+      <li>You can make safer changes because you know that when editing a class you are only ever altering one responsibility.</li>
+      <li>You can combine responsibilities to make a variety of components from a lot of abstracted classes.</li>
+      <li></li>
+    </ul>
   </aside>
 </section>
 
@@ -285,55 +451,6 @@
               .site-search {} /* Block */
               .site-search__field {} /* Element */
               .site-search--full {} /* Modifier */
-            </code></pre>
-</section>
-
-<section>
-  <h2>Separation of Structure From Skin</h2>
-  <br>
-						<pre><code data-trim contenteditable>
-              .button {
-              width: 200px;
-              height: 50px;
-              }
-
-              .box {
-              width: 400px;
-              overflow: hidden;
-              }
-
-              .widget {
-              width: 500px;
-              min-height: 200px;
-              overflow: auto;
-              }
-
-              .skin {
-              border: solid 1px #ccc;
-              background: linear-gradient(#ccc, #222);
-              box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
-              }
-            </code></pre>
-</section>
-
-<section>
-  <h2>Separation of Containers and Content</h2>
-						<pre><code data-trim contenteditable>
-              // not this
-              .widget h3 {
-              font-size: 14px;
-              color: #333;
-              margin-top: 10px;
-              }
-
-              // better reuse
-              .widget {
-              padding-top: 10px;
-              }
-              h3 {
-              font-size: 14px;
-              color: #333;
-              }
             </code></pre>
 </section>
 
@@ -404,7 +521,7 @@
 
 			<section>
 				<section>
-  <h1>Preprocessors?</h1>
+  <h1 class="main">Preprocessors?</h1>
 
   <p><em>Why does anything need to change?</em></p>
 
