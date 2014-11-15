@@ -1,20 +1,50 @@
 <section>
-  <h2>Separation of Containers and Content</h2>
-						<pre><code data-trim contenteditable>
-              // not this
-              .widget h3 {
-              font-size: 14px;
-              color: #333;
-              margin-top: 10px;
-              }
 
-              // better reuse
-              .widget {
-              padding-top: 10px;
-              }
-              h3 {
-              font-size: 14px;
-              color: #333;
-              }
-            </code></pre>
+  <div class="row">
+    <div class="col-1-2">
+      <p>Difficult to reuse these styles</p>
+<pre><code class="css" data-trim>
+.widget h3 {
+  font-size: 14px;
+  color: #333;
+  padding-top: 10px;
+}
+</code></pre>
+      <p>Better</p>
+<pre><code class="css" data-trim>
+.widget {
+  padding-top: 10px;
+}
+h3 {
+  font-size: 14px;
+  color: #333;
+}
+</code></pre>
+      <p>Best</p>
+<pre><code class="css" data-trim>
+.title {
+  font-size: 14px;
+  color: #333;
+}
+</code></pre>
+    </div>
+    <div class="col-1-2">
+      <br>
+      <h2>Separation of Containers and Content</h2>
+      <img src="img/ship.jpg">
+    </div>
+  </div>
+
+  <aside class="notes">
+    <ul>
+      <li>Essentially, this means “rarely use location-dependent styles”. An object should look the same no matter where you put it.</li>
+      <li>all unclassed H2s will look the same</li>
+      <li>all elements with the category class (called a mixin) will look the same</li>
+    </ul>
+    <ul>
+      <li>If you have fewer styles that are repeated in your CSS, then this will lead to smaller file sizes</li>
+      <li>all unclassed H2s will look the same</li>
+      <li>all elements with the category class (called a mixin) will look the same</li>
+    </ul>
+  </aside>
 </section>
