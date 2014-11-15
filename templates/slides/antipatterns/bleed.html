@@ -1,0 +1,39 @@
+<section>
+  <h2>Style Bleed</h2>
+<pre><code class="xml" data-trim>
+<div id="main-container">
+  <div class="sidebar container">
+    <h1 class="title">Chippewa</h1>
+    <!-- stuff -->
+  </div>
+</div>
+</code></pre>
+<pre><code class="css" data-trim>
+.sidebar .title {
+  font-size: 1.2em;
+  color: #333;
+}
+
+#main-container .title {
+  color: #000;
+  line-height: 1.6;
+}
+
+.sidebar {
+  font-size: 1.1em;
+}
+
+.container h1 {
+  color: #000;
+}
+
+.title {
+  font-size: 2em;
+  line-height: 1.4;
+}
+</code></pre>
+
+  <aside class="notes">
+    <p>Side effects, no clear hierarchy</p>
+  </aside>
+</section>

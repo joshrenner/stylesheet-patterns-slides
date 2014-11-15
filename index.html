@@ -42,172 +42,178 @@
 
 
 
-			<section>
-				<section>
+<section>
   <h1>Stylesheet Patterns</h1>
 
   <p>Stylesheet Design Patterns for Better CSS</p>
-
   <p>
-    <small>Created by <a href="http://www.linkedin.com/in/joshrenner/">Josh Renner</a> / <a
+    <small><a href="http://www.linkedin.com/in/joshrenner/">Josh Renner</a> / <a
         href="http://twitter.com/joshrenner">@joshrenner</a> / <a href="mailto:josh@renner.mn">josh@renner.mn</a>
     </small>
   </p>
   <br>
   <br>
 
-  <p>
+  <p><a href="http://demo.rooftop.mn/stylesheets/">demo.rooftop.mn/stylesheets</a></p>
+  <small>
     <a href="http://lab.hakim.se/reveal-js">Made with Reveal.js</a>
-  </p>
+  </small>
 </section>
 
-				<section>
-  <p>If you are starting a green-field app, you can choose patterns that will effect your efficiency down the road. If
-    you are taking on a brown-field refactor, you will need to introduce patterns that reduce friction.</p>
-</section>
-			</section>
-
-			<section>
-  <section>
-    <h1 class="main">Efficient Selectors</h1>
-
-    <p>Some guidelines to keep in mind when crafting your selectors</p>
-  </section>
-  <section>
-    <p>CSS gets evaluated from right to left.</p>
-
-    <p>The evaluation of any more than a single element to determine styling is inefficient.</p>
-
-    <p>The four rules Google Page Speed recommendations consider inefficient:</p>
-    <ul>
-      <li>Rules with descendant selectors.
-        <br>E.g. <code>#content h3</code></li>
-      <li>Rules with child or adjacent selectors.
-        <br>E.g. <code>#content &gt; h3</code></li>
-      <li>Rules with overly qualified selectors.
-        <br>E.g. <code>div#content &gt; h3</code></li>
-      <li>Rules that apply :hover to non-link elements.
-        <br>E.g. <code>div#content:hover</code></li>
-    </ul>
-  </section>
-  <section data-markdown>
-    <script type="text/template">
-      The guidelines I try to embrace:
-
-
-      - Use child selectors. E.g. <code>.module &gt; h3</code>
-      - Avoid tag selectors for common elements. E.g. <code>.module div</code>
-      - Use class names as the right-most selector.
-      - Avoid qualifying class names. E.g. <code>div.module</code>
-    </script>
-  </section>
-  <section data-markdown>
-    <script type="text/template">
-      ##Specificity Wars
-
-      Watch out for these:
-
-      - Rules with ids.
-      - Rules with elements.
-      - Rules with !important.
-    </script>
-  </section>
-</section>
-
-			<section>
-  <h1 class="main">Media Queries</h1>
-
-  <aside class="notes">
-    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker
-    notes window (hit 's' on your keyboard).
-  </aside>
-</section>
 
 <section>
-<section data-markdown>
+<section>
   <h1 class="main">Anti-Patterns</h1>
 </section>
 
 <section>
-  <h2>Parent Down Modifactions</h2>
-  <br>
-	<pre><code data-trim contenteditable>
-    .widget {
-    color: red;
-    border: 1px solid black;
-    width: 50%;
-    }
+  <h2>Style Bleed</h2>
+<pre><code class="xml" data-trim>
+<div id="main-container">
+  <div class="sidebar container">
+    <h1 class="title">Chippewa</h1>
+    <!-- stuff -->
+  </div>
+</div>
+</code></pre>
+<pre><code class="css" data-trim>
+.sidebar .title {
+  font-size: 1.2em;
+  color: #333;
+}
 
-    #sidebar .widget {
-    width: 100%;
-    }
-    body.homepage .widget {
-    border: none;
-    }
-  </code></pre>
-  <p>Software entities should be open for extension, but closed for modification.
+#main-container .title {
+  color: #000;
+  line-height: 1.6;
+}
+
+.sidebar {
+  font-size: 1.1em;
+}
+
+.container h1 {
+  color: #000;
+}
+
+.title {
+  font-size: 2em;
+  line-height: 1.4;
+}
+</code></pre>
+
+  <aside class="notes">
+    <p>Side effects, no clear hierarchy</p>
+  </aside>
 </section>
-
 <section>
-  <h2>Overly Complicated Selectors</h2>
-	<pre><code data-trim contenteditable>
-    #main-nav ul li ul li div {}
-    #sidebar > div > h3 {}
-  </code></pre>
+  <h2>Style Bloat</h2>
+<pre><code class="css" data-trim>
+.title {
+  font-size: 2em;
+  font-weight: bold;
+}
+.headline {
+  font-size: 2em;
+  font-weight: 900;
+}
+.hdln {
+  font-size: 18px;
+  font-weight: bold;
+}
+.head {
+  font-size: 2em;
+  font-weight: bold;
+}
+</code></pre>
+
+  <aside class="notes">
+    <p>multiple classes all solving the same problem. clear shared purpose and duplication</p>
+  </aside>
 </section>
-
 <section>
-  <h2>Overly Generic, Unscoped Class Names</h2>
-	<pre><code data-trim contenteditable>
-    .title {}
-  </code></pre>
+  <h2>Parent-Down Modifications</h2>
+<pre><code data-trim>
+.widget {
+  color: red;
+  border: 1px solid black;
+  width: 50%;
+}
+
+#sidebar .widget {
+  width: 100%;
+}
+body.homepage .widget {
+  border: none;
+}
+</code></pre>
+  <p>Software entities should be open for extension, but closed for modification.</p>
 </section>
 
 <section>
   <h2>Overly Aggressive Resets</h2>
-	<pre><code data-trim contenteditable>
-    hr {
-    border: 1px solid #000;
-    }
-  </code></pre>
+<pre><code class="css" data-trim>
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  /*
+    and it goes on
+  */
+}
+p, h6, h5, h4, h3, h2, h1, a, em, strong, li {
+  font-variant: normal;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  /*
+    and it goes on
+  */
+}
+</code></pre>
 </section>
 
 <section>
   <h2>Increasing Specificity</h2>
-	<pre><code data-trim contenteditable>
-    .title {
-    color: #000;
-    }
+<pre><code data-trim>
+.title {
+  color: #000;
+}
+.main .title {
+  color: #222;
+}
+.main > div .title {
+  color: #000;
+}
+</code></pre>
+<pre><code data-trim>
+#callout .title {
+  color: #922;
+}
+#callout.muted .title {
+  color: #644;
+}
+.main .title {
+  color: #000 !important;
+}
+</code></pre>
+</section>
 
-    ...
+<section>
+  <h2>And Sometimes Y</h2>
+<pre><code>
+.widget p { /* descendant */ }
 
-    .main .title {
-    color: #222;
-    }
+#chippewa { /* ids */ }
 
-    ...
+h3.title { /* overly qualified */ }
 
-    .main > div .title {
-    color: #000;
-    }
-  </code></pre>
-	<pre><code data-trim contenteditable>
-    #callout .title {
-    color: #922;
-    }
+</code></pre>
+<pre><code>
+.chippewa {
+  margin: 1em !important;
+}
 
-    ...
-
-    #callout.muted .title {
-    color: #644;
-    }
-
-    ...
-
-    .main .title {
-    color: #000 !important;
-    }
-  </code></pre>
+</code></pre>
 </section>
 
 </section>
@@ -215,6 +221,44 @@
 <section>
 <section>
   <h1 class="main">Patterns</h1>
+</section>
+
+
+<section>
+  <h2>Namespacing &amp; Seperation of Concerns</h2>
+<pre><code class="xml" data-trim>
+<div class="mod-accordion state-collapsed js-accordion-container x-placesToGoMenu">
+  <div class="wrapper js-accordion-title test-clickable">
+    <h4 class="title">Places to Go</h4>
+  </div>
+  <div class="wrapper js-accordion-content test-collapsible">
+    <ul class="mod-menu">
+      <li class="mod-menu-item">
+        <a class="test-link">Someplace</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</code></pre>
+</section>
+<section>
+  <h2>Module Scoping</h2>
+<pre><code class="scss">
+.widget {
+  //elements
+  .title {}
+
+  .body {}
+
+  > button {}
+
+  //states
+  &.collapsed {}
+
+  //other variations
+  .ie-8 & {}
+}
+</code></pre>
 </section>
 
 
@@ -582,8 +626,18 @@ h3 {
 </section>
 </section>
 
-			<section>
-				<section>
+
+<section>
+  <h1 class="main">Media Queries</h1>
+
+  <aside class="notes">
+    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker
+    notes window (hit 's' on your keyboard).
+  </aside>
+</section>
+
+<section>
+<section>
   <h1 class="main">Preprocessors?</h1>
 
   <p><em>Why does anything need to change?</em></p>
@@ -604,7 +658,7 @@ h3 {
   </p>
 </section>
 
-				<section data-markdown>
+<section data-markdown>
   <script type="text/template">
     ##The styles need to scale
     - Multiple applications with a common brand
@@ -613,7 +667,7 @@ h3 {
   </script>
 </section>
 
-				<section data-markdown>
+<section data-markdown>
   <script type="text/template">
     ##The styles are distributed
     - Locations - <em>modularity</em>
@@ -622,7 +676,7 @@ h3 {
   </script>
 </section>
 
-			</section>
+</section>
 
 <section>
 <section>
@@ -1155,35 +1209,8 @@ $buttons: 'facebook' 'twitter' 'linkedin' 'github';
 
 </section>
 
-			<section data-markdown>
-  <script type="text/template">
-    ##LESS
 
-    - Client-side
-    - @variables
-    <pre><code data-trim contenteditable>
-      @fnord: "I am fnord.";
-      @var: "fnord";
-      content: @@var;
-    </code></pre>
-    <p>outputs:</p>
-    <pre><code data-trim contenteditable>
-      content: "I am fnord.";
-    </code></pre>
-    - mixins
-    <pre><code data-trim contenteditable>
-      .mixin {
-      color: red;
-      }
-      .widget {
-      .mixin;
-      }
-    </code></pre>
-  </script>
-</section>
-
-
-			<section>
+<section>
   <h3>Additional Resources:</h3>
 
   <p><a href="https://github.com/davidtheclark/scalable-css-reading-list">A Scalable CSS Reading List</a></p>
@@ -1221,7 +1248,9 @@ $buttons: 'facebook' 'twitter' 'linkedin' 'github';
 				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'socket.io/socket.io.js', async: true },
+				{ src: 'plugin/notes-server/client.js', async: true }
 			]
 		});
 	</script>
